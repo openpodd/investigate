@@ -48,6 +48,8 @@
     <Compile Include="PoddService.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Views\NoCapEntry.cs" />
+    <Compile Include="Views\UserNameEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Remotion.Linq">
@@ -96,6 +98,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
