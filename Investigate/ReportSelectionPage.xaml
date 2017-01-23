@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+		xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		x:Class="Investigate.ReportSelectionPage"
+		xmlns:local="clr-namespace:Investigate">
+	
+	<ContentPage.Content>
+		<StackLayout>
+
+			<StackLayout.Orientation>
+			   <OnIdiom x:TypeArguments="StackOrientation">
+			       <OnIdiom.Phone>Vertical</OnIdiom.Phone>
+			       <OnIdiom.Tablet>Horizontal</OnIdiom.Tablet>
+			   </OnIdiom>
+		   </StackLayout.Orientation>
+			
+			<StackLayout>
+				<Label Text="Filter" />
+				<Button x:Name="searchButton" Text="Search" Clicked="OnSearchButtonClicked"></Button>
+			</StackLayout>
+
+			<StackLayout>
+				<Label x:Name="resultLabel" Text="Result: none" />
+				
+				<ListView x:Name="reportListView" RowHeight="200">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<StackLayout>
+									<Label Text="{Binding AdministrationAreaName}" />
+									<Label Text="{Binding RendererFormData}" />
+								</StackLayout>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+	
+</ContentPage>

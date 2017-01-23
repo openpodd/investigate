@@ -64,18 +64,18 @@ namespace Investigate
 	public class SearchItem
 	{
 		[JsonProperty("id")]
-		public int Id;
+		public int Id { get; set; }
 
 		[JsonProperty("date")]
-		public DateTime Date;
+		public DateTime Date { get; set; }
 
 		[JsonProperty("administrationAreaAddress")]
-		public String AdministrationAreaName;
+		public String AdministrationAreaName { get; set; }
 
 		[JsonProperty("createByName")]
-		public String CreateByName;
+		public String CreateByName { get; set; }
 
 		[JsonProperty("renderedOriginalFormData")]
-		public String RendererFormData;
+		public String RendererFormData { get; set; }
 	}
 }

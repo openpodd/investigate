@@ -6,14 +6,9 @@ namespace Investigate
 	public partial class InvestigatePage : ContentPage
 	{
 
-		PoddService service = null;
-
 		public InvestigatePage()
 		{
 			InitializeComponent();
-			System.Diagnostics.Debug.WriteLine("reports");
-
-			service = new PoddService();
 		}
 
 		async void OnLogoutButtonClicked(object sender, EventArgs e)
@@ -26,10 +21,7 @@ namespace Investigate
 
 		async void OnFetchReportClicked(object sender, EventArgs e)
 		{
-			label.Text = "fetch reports";
-			var results = await service.Search(new SearchRequest());
-			System.Diagnostics.Debug.WriteLine(results);
-			label.Text = results.ErrorMessage;
+			await Navigation.PushAsync(new ReportSelectionPage(), true);
 		}
 	}
 }
