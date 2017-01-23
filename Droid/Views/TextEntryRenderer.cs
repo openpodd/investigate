@@ -19,8 +19,6 @@ namespace Investigate.Droid
 
 			if (Control != null)
 			{
-				Control.InputType = InputTypes.TextFlagNoSuggestions;
-
 				if (entry != null)
 				{
 					SetReturnType(entry);
