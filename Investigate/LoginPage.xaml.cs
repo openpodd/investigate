@@ -29,14 +29,15 @@ namespace Investigate
 				var result = await service.Login(new LoginRequest(userName, password));
 				if (result.Success)
 				{
-					messageLabel.Text = "Token = " + result.Message;
+					//messageLabel.Text = "Token = " + result.Message;
 					Navigation.InsertPageBefore(new InvestigatePage(), this);
 					await Navigation.PopAsync();
 				}
 				else {
-					messageLabel.Text = "Login Failed with " + result.Message;
 					passwordEntry.Text = String.Empty;
 					passwordLengthValidator.ResetValidation();
+
+					DisplayAlert("Fail", "Cannot login with provided credentials, please check and try again.", "OK");
 				}
 			}
 		}
