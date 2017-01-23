@@ -55,6 +55,10 @@
     <Compile Include="Services\Login\LoginRequest.cs" />
     <Compile Include="Services\Login\LoginResult.cs" />
     <Compile Include="Services\Login\LoginService.cs" />
+    <Compile Include="Services\Report\ReportService.cs" />
+    <Compile Include="Services\Report\SearchResult.cs" />
+    <Compile Include="Services\Report\SearchRequest.cs" />
+    <Compile Include="Services\PaginateRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Remotion.Linq">
@@ -110,6 +114,7 @@
     <Folder Include="Behaviors\" />
     <Folder Include="Services\" />
     <Folder Include="Services\Login\" />
+    <Folder Include="Services\Report\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
