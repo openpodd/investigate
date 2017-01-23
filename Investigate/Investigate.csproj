@@ -45,13 +45,16 @@
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PoddService.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Views\TextEntry.cs" />
     <Compile Include="Constants\ReturnKeyType.cs" />
     <Compile Include="Views\BooleanToObjectConverter.cs" />
     <Compile Include="Behaviors\TextLengthValidatorBehavior.cs" />
+    <Compile Include="Services\PoddService.cs" />
+    <Compile Include="Services\Login\LoginRequest.cs" />
+    <Compile Include="Services\Login\LoginResult.cs" />
+    <Compile Include="Services\Login\LoginService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Remotion.Linq">
@@ -105,6 +108,8 @@
     <Folder Include="Views\" />
     <Folder Include="Constants\" />
     <Folder Include="Behaviors\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Login\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
