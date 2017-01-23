@@ -59,9 +59,9 @@ namespace Investigate
 			bindable.TextChanged -= HandlerTextChanged;
 		}
 
-		void ValidateLength(Entry entry)
+		public void ValidateLength(Entry entry)
 		{
-			IsValid = !IsOnceCompleted || entry.Text.Length >= MinLength;
+			IsValid = !IsOnceCompleted || (entry.Text != null && entry.Text.Length >= MinLength);
 			entry.TextColor = IsValid ? Color.Default : Color.Red;
 		}
 

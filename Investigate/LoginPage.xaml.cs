@@ -43,6 +43,9 @@ namespace Investigate
 
 		bool Validate()
 		{
+			usernameLengthValidator.ValidateLength(userNameEntry);
+			passwordLengthValidator.ValidateLength(passwordEntry);
+
 			if (!usernameLengthValidator.IsValid || !passwordLengthValidator.IsValid)
 			{
 				DisplayAlert("Alert", "Please check form value", "OK");
