@@ -37,7 +37,7 @@ namespace Investigate
 					passwordEntry.Text = String.Empty;
 					passwordLengthValidator.ResetValidation();
 
-					DisplayAlert("Fail", "Cannot login with provided credentials, please check and try again.", "OK");
+					await DisplayAlert("Fail", "Cannot login with provided credentials, please check and try again.", "OK");
 				}
 			}
 		}

@@ -4,6 +4,11 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 		x:Class="Investigate.ReportSelectionPage"
 		xmlns:local="clr-namespace:Investigate">
+
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="{Binding NumberOfSelectedReports,
+				StringFormat='Selected: {0}'}" />
+	</ContentPage.ToolbarItems>
 	
 	<ContentPage.Content>
 		<StackLayout>
@@ -15,21 +20,28 @@
 			   </OnIdiom>
 		   </StackLayout.Orientation>
 			
-			<StackLayout>
+			<StackLayout HorizontalOptions="FillAndExpand">
 				<Label Text="Filter" />
-				<Button x:Name="searchButton" Text="Search" Clicked="OnSearchButtonClicked"></Button>
+				<Button x:Name="searchButton" Text="Search" Command="{Binding SearchCommand}"></Button>
 			</StackLayout>
 
-			<StackLayout>
-				<Label x:Name="resultLabel" Text="Result: none" />
+			<StackLayout HorizontalOptions="FillAndExpand">
+				<Label x:Name="resultLabel" Text="{Binding NumberOfReports,
+						StringFormat='Result: {0}'}" />
 				
-				<ListView x:Name="reportListView" RowHeight="200">
+				<ListView x:Name="reportListView" RowHeight="200" ItemsSource="{Binding Reports}">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
 								<StackLayout>
 									<Label Text="{Binding AdministrationAreaName}" />
 									<Label Text="{Binding RendererFormData}" />
+
+									<StackLayout HorizontalOptions="End">
+										<Button Text="Select"
+											Command="{Binding Source={x:Reference reportListView}, Path=BindingContext.SelectReportCommand}"
+											CommandParameter="{Binding .}" />
+									</StackLayout>
 								</StackLayout>
 							</ViewCell>
 						</DataTemplate>
