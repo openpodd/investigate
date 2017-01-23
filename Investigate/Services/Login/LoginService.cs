@@ -9,61 +9,8 @@ using Newtonsoft.Json.Linq;
 
 namespace Investigate
 {
-
-public class LoginResult
+	public partial class PoddService
 	{
-		public String UserName
-		{
-			get;
-		}
-
-		public bool Success
-		{
-			get;
-		}
-
-		public String Message
-		{
-			get;
-		}
-
-		public LoginResult(String userName, bool success, String message)
-		{
-			this.UserName = userName;
-			this.Success = success;
-			this.Message = message;
-		}
-	}
-
-	public class LoginRequest
-	{
-		public String Username { get; }
-		public String Password { get; }
-
-		public LoginRequest(String userName, String password)
-		{
-			this.Username = userName;
-			this.Password = password;
-		}
-	}
-
-
-	public class PoddService
-	{
-
-		String ServerUrl
-		{
-			get;
-			set;
-		}
-
-
-		public PoddService()
-		{
-			ServerUrl = "https://api.cmonehealth.org";
-		}
-
-
 		public async Task<LoginResult> Login(LoginRequest request)
 		{
 			var httpClient = new HttpClient();
@@ -71,7 +18,7 @@ public class LoginResult
 
 			var postJson = JsonConvert.SerializeObject(request, Formatting.Indented,
 													   new JsonSerializerSettings
-			{ ContractResolver = new CamelCasePropertyNamesContractResolver() }
+													   { ContractResolver = new CamelCasePropertyNamesContractResolver() }
 													  );
 
 			var content = new StringContent(postJson, Encoding.UTF8, "application/json");
@@ -89,11 +36,6 @@ public class LoginResult
 				var resultContent = await response.Content.ReadAsStringAsync();
 				return new LoginResult(request.Username, false, resultContent);
 			}
-
-
-
 		}
-			
-
 	}
 }
