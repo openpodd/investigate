@@ -20,7 +20,9 @@ namespace Investigate
 			var uri = new Uri(ServerUrl + "/reports/search/");
 
 			var values = new Dictionary<string, string>();
-			values.Add("q", "negative:true");
+			values.Add("page", searchRequest.StartPage.ToString());
+			values.Add("page_size", searchRequest.ItemPerPage.ToString());
+			values.Add("q", "negative:true+typeName:\"สัตว์ป่วย/ตาย\"");
 			values.Add("tz", "7");
 
 			var content = new FormUrlEncodedContent(values);
