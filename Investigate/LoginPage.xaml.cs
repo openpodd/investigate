@@ -13,6 +13,8 @@ namespace Investigate
 		public LoginPage()
 		{
 			InitializeComponent();
+			userNameEntry.Next = passwordEntry;
+			passwordEntry.Completed += OnLoginButtonClicked;
 			service = new PoddService();
 		}
 

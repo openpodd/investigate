@@ -11,10 +11,10 @@
 	<ContentPage.Content>
 		<StackLayout VerticalOptions="StartAndExpand" Spacing="15">
 			<Label Text="Username"/>
-			<local:UserNameEntry x:Name="userNameEntry" Placeholder="username" />
+			<local:TextEntry x:Name="userNameEntry" Placeholder="username" ReturnKeyType="Next" />
 			
 			<Label Text="Password"/>
-			<Entry x:Name="passwordEntry" Placeholder="password" IsPassword="true" />
+			<local:TextEntry x:Name="passwordEntry" Placeholder="password" IsPassword="true" />
 			
 			<Button Text="Login" Clicked="OnLoginButtonClicked" />
 			<Label x:Name="messageLabel"/>
