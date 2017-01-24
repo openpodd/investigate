@@ -27,17 +27,14 @@ namespace Investigate
 			{
 				foreach (var item in reports)
 				{
-					var report = new Report
+					realm.Add(new ReportInvestigate
 					{
-						Id = item.Id,
-						Date = item.Date,
-						AdministrationAreaName = item.AdministrationAreaName,
-						CreateByName = item.CreateByName,
-						RendererFormData = item.RendererFormData
-					};
-
-					realm.Add(report, true);
-					realm.Add(new ReportInvestigate { Report = report });
+						ReportId = item.Id,
+						ReportDate = item.Date,
+						ReportAdministrationAreaName = item.AdministrationAreaName,
+						ReportCreateByName = item.CreateByName,
+						ReportRendererFormData = item.RendererFormData
+					});
 				}
 			});
 

@@ -79,8 +79,11 @@ namespace Investigate
 
 		void SelectReport(SearchItem report)
 		{
-			SelectedReports.Add(report);
-			OnPropertyChanged("NumberOfSelectedReports");
+			if (!SelectedReports.Contains(report))
+			{
+				SelectedReports.Add(report);
+				OnPropertyChanged("NumberOfSelectedReports");
+			}
 		}
 
 		void ReportSelectionDone()

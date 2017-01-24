@@ -16,20 +16,21 @@
 			<Label x:Name="label" 
 				Text="No investigate report found. Please add one first."
 				HorizontalOptions="Center"
-				VerticalOptions="CenterAndExpand" />
+				VerticalOptions="CenterAndExpand"
+				IsVisible="{Binding IsEmptyReportInvestigates}" />
 
-			<ListView ItemsSource="{Binding ReportInvestigates}" RowHeight="50">
+			<ListView ItemsSource="{Binding ReportInvestigates}" RowHeight="50" IsVisible="{Binding IsNotEmptyReportInvestigates}">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
 							<StackLayout Orientation="Horizontal">
 								<StackLayout WidthRequest="100">
-									<Label Text="{Binding Report.Date, StringFormat='{0:MMMM dd, yyyy}'}" />
+									<Label Text="{Binding ReportDate, StringFormat='{0:MMMM dd, yyyy}'}" />
 								</StackLayout>
 								
 								<StackLayout>
-									<Label Text="{Binding Report.AdministrationAreaName}" />
-									<Label Text="{Binding Report.RendererFormData}" />
+									<Label Text="{Binding ReportAdministrationAreaName}" />
+									<Label Text="{Binding ReportRendererFormData}" />
 								</StackLayout>
 							</StackLayout>
 						</ViewCell>

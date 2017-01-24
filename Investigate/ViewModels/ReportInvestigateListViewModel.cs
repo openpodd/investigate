@@ -12,11 +12,26 @@ namespace Investigate
 		{
 			get { return ReportInvestigates.Count(); }
 		}
+		public bool IsEmptyReportInvestigates
+		{
+			get { return !ReportInvestigates.Any(); }
+		}
+		public bool IsNotEmptyReportInvestigates
+		{
+			get { return ReportInvestigates.Any(); }
+		}
 
 		public ReportInvestigateListViewModel()
 		{
 			var realm = Realm.GetInstance();
 			ReportInvestigates = realm.All<ReportInvestigate>();
 		}
+
+		public void RefreshReportInvestigateListVisibility()
+		{
+			OnPropertyChanged("IsEmptyReportInvestigates");
+			OnPropertyChanged("IsNotEmptyReportInvestigates");
+		}
+			
 	}
 }
