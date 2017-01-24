@@ -6,8 +6,9 @@
 		xmlns:local="clr-namespace:Investigate">
 
 	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="{Binding NumberOfSelectedReports,
-				StringFormat='Selected: {0}'}" />
+		<ToolbarItem
+			Text="{Binding NumberOfSelectedReports, StringFormat='Selected: {0}'}"
+			Command="{Binding ReportSelectionDoneCommand}" />
 	</ContentPage.ToolbarItems>
 	
 	<ContentPage.Content>

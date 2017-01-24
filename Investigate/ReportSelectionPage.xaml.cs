@@ -11,13 +11,14 @@ namespace Investigate
 		public ReportSelectionPage()
 		{
 			InitializeComponent();
-			var closeAction = new Action(ClosePage);
-			BindingContext = new ReportSelectionViewModel(closeAction);
+			var context = new ReportSelectionViewModel();
+			context.DoneReportSelection = new Action<HashSet<SearchItem>>(ClosePage);
+			BindingContext = context;
 		}
 
-		async public void ClosePage()
+		async public void ClosePage(HashSet<SearchItem> reports)
 		{
-			await Navigation.PopAsync();
+			await Navigation.PopAsync(true);
 		}
 	}
 }

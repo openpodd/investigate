@@ -11,7 +11,8 @@ namespace Investigate
 {
 	public class ReportSelectionViewModel : INotifyPropertyChanged
 	{
-		Action closeAction;
+		public Action<HashSet<SearchItem>> DoneReportSelection { get; set; }
+
 		public event PropertyChangedEventHandler PropertyChanged;
 		public ObservableCollection<SearchItem> Reports { get; }
 		public int NumberOfReports
@@ -34,16 +35,17 @@ namespace Investigate
 		bool canSearch = true;
 		public ICommand SearchCommand { get; }
 		public ICommand SelectReportCommand { get; }
+		public ICommand ReportSelectionDoneCommand { get; }
 
 		public EventHandler OnSelectedReportCompleted;
 
-		public ReportSelectionViewModel(Action closeAction)
+		public ReportSelectionViewModel()
 		{
-			this.closeAction = closeAction;
 			Reports = new ObservableCollection<SearchItem>();
 			SelectedReports = new HashSet<SearchItem>();
 			SearchCommand = new Command(async () => await Search(), () => canSearch);
 			SelectReportCommand = new Command<SearchItem>(SelectReport);
+			ReportSelectionDoneCommand = new Command(ReportSelectionDone);
 		}
 
 		async Task Search()
@@ -74,6 +76,15 @@ namespace Investigate
 		{
 			SelectedReports.Add(report);
 			OnPropertyChanged("NumberOfSelectedReports");
+		}
+
+
+		void ReportSelectionDone()
+		{
+			if (DoneReportSelection != null)
+			{
+				DoneReportSelection(SelectedReports);
+			}
 		}
 
 		protected virtual void OnPropertyChanged(string propertyName)
