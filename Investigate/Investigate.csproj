@@ -69,6 +69,7 @@
     <Compile Include="Models\ReportInvestigate.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="ViewModels\ReportInvestigateListViewModel.cs" />
+    <Compile Include="Services\IPoddService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Remotion.Linq">

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Investigate
@@ -11,9 +10,12 @@ namespace Investigate
 		public ReportSelectionPage()
 		{
 			InitializeComponent();
-			var context = new ReportSelectionViewModel();
-			context.DoneReportSelection = new Action<HashSet<SearchItem>>(ClosePage);
-			BindingContext = context;
+
+			BindingContext = new ReportSelectionViewModel
+			{
+				DoneReportSelection = new Action<HashSet<SearchItem>>(ClosePage),
+				PoddService = new PoddService()
+			};
 		}
 
 		async public void ClosePage(HashSet<SearchItem> reports)
