@@ -5,9 +5,37 @@
 		<ToolbarItem Text="Logout" Clicked="OnLogoutButtonClicked"/>
 	</ContentPage.ToolbarItems>
 
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness"
+				iOS="20, 40, 20, 20"
+				Android="20, 20, 20, 20" />
+	</ContentPage.Padding>
+
 	<ContentPage.Content>
 		<StackLayout>
-			<Label x:Name="label" Text="Main app content goes here" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+			<Label x:Name="label" 
+				Text="No investigate report found. Please add one first."
+				HorizontalOptions="Center"
+				VerticalOptions="CenterAndExpand" />
+
+			<ListView ItemsSource="{Binding ReportInvestigates}" RowHeight="50">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Horizontal">
+								<StackLayout WidthRequest="100">
+									<Label Text="{Binding Report.Date, StringFormat='{0:MMMM dd, yyyy}'}" />
+								</StackLayout>
+								
+								<StackLayout>
+									<Label Text="{Binding Report.AdministrationAreaName}" />
+									<Label Text="{Binding Report.RendererFormData}" />
+								</StackLayout>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

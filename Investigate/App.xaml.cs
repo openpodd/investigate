@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System.Linq;
+using Realms;
+using Xamarin.Forms;
 
 namespace Investigate
 {

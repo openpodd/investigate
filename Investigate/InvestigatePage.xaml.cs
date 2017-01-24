@@ -5,10 +5,10 @@ namespace Investigate
 {
 	public partial class InvestigatePage : ContentPage
 	{
-
 		public InvestigatePage()
 		{
 			InitializeComponent();
+			BindingContext = new ReportInvestigateListViewModel();
 		}
 
 		async void OnLogoutButtonClicked(object sender, EventArgs e)

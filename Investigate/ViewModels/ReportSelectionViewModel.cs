@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Realms;
 
 namespace Investigate
 {

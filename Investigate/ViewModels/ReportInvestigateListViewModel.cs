@@ -1,24 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading.Tasks;
-
+using System.Linq;
 using Realms;
 
 namespace Investigate
 {
-	public class ReportInvestigateListViewModel : INotifyPropertyChanged
+	public class ReportInvestigateListViewModel : BaseViewModel
 	{
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		public List<ReportInvestigate> ReportInvestigates { get; private set; }
+		public IEnumerable<ReportInvestigate> ReportInvestigates { get; private set; }
+		public int ReportInvestigatesCount
+		{
+			get { return ReportInvestigates.Count(); }
+		}
 
 		public ReportInvestigateListViewModel()
 		{
-			new Task(() =>
-			{
-				var realm = Realm.GetInstance();	
-
-			}).Start();
+			var realm = Realm.GetInstance();
+			ReportInvestigates = realm.All<ReportInvestigate>();
 		}
 	}
 }
