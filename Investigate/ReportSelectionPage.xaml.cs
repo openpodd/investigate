@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Investigate
@@ -12,7 +11,11 @@ namespace Investigate
 		{
 			InitializeComponent();
 			var closeAction = new Action(ClosePage);
-			BindingContext = new ReportSelectionViewModel(closeAction);
+			BindingContext = new ReportSelectionViewModel
+			{
+				CloseAction = closeAction,
+				PoddService = new PoddService()
+			};
 		}
 
 		async public void ClosePage()

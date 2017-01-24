@@ -66,6 +66,7 @@
       <DependentUpon>ReportSelectionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ReportSelectionViewModel.cs" />
+    <Compile Include="Services\IPoddService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Remotion.Linq">

@@ -5,7 +5,7 @@ namespace Investigate
 {
 
 
-	public partial class PoddService
+	public partial class PoddService : IPoddService
 	{
 
 		String ServerUrl
@@ -19,9 +19,6 @@ namespace Investigate
 		{
 			ServerUrl = "https://api.cmonehealth.org";
 		}
-
-
-
 			
 
 	}

@@ -11,8 +11,13 @@ namespace Investigate
 {
 	public class ReportSelectionViewModel : INotifyPropertyChanged
 	{
-		Action closeAction;
+
 		public event PropertyChangedEventHandler PropertyChanged;
+
+		public Action CloseAction { set; get; } = () => { };
+
+		public IPoddService PoddService { set; get; }
+
 		public ObservableCollection<SearchItem> Reports { get; }
 		public int NumberOfReports
 		{ 
@@ -21,6 +26,7 @@ namespace Investigate
 				return Reports.Count;
 			}
 		}
+
 
 		public HashSet<SearchItem> SelectedReports { get; }
 		public int NumberOfSelectedReports
@@ -35,11 +41,8 @@ namespace Investigate
 		public ICommand SearchCommand { get; }
 		public ICommand SelectReportCommand { get; }
 
-		public EventHandler OnSelectedReportCompleted;
-
-		public ReportSelectionViewModel(Action closeAction)
+		public ReportSelectionViewModel()
 		{
-			this.closeAction = closeAction;
 			Reports = new ObservableCollection<SearchItem>();
 			SelectedReports = new HashSet<SearchItem>();
 			SearchCommand = new Command(async () => await Search(), () => canSearch);
@@ -52,8 +55,7 @@ namespace Investigate
 
 			Reports.Clear();
 
-			var service = new PoddService();
-			var results = await service.Search(new SearchRequest());
+			var results = await PoddService.Search(new SearchRequest());
 			foreach (SearchItem item in results.results)
 			{
 				Reports.Add(item);
@@ -74,7 +76,7 @@ namespace Investigate
 		{
 			SelectedReports.Add(report);
 			OnPropertyChanged("NumberOfSelectedReports");
-			closeAction();
+			CloseAction();			
 		}
 
 		protected virtual void OnPropertyChanged(string propertyName)
