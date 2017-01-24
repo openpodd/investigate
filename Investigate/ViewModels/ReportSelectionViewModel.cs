@@ -74,7 +74,6 @@ namespace Investigate
 		{
 			SelectedReports.Add(report);
 			OnPropertyChanged("NumberOfSelectedReports");
-			closeAction();
 		}
 
 		protected virtual void OnPropertyChanged(string propertyName)

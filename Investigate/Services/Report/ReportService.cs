@@ -22,7 +22,7 @@ namespace Investigate
 			var values = new Dictionary<string, string>();
 			values.Add("page", searchRequest.StartPage.ToString());
 			values.Add("page_size", searchRequest.ItemPerPage.ToString());
-			values.Add("q", "negative:true+typeName:\"สัตว์ป่วย/ตาย\"");
+			values.Add("q", "negative:true AND typeName:\"สัตว์ป่วย/ตาย\"");
 			values.Add("tz", "7");
 
 			var content = new FormUrlEncodedContent(values);
