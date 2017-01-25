@@ -8,6 +8,26 @@
 			</StackLayout>
 
 			<ListView ItemsSource="{Binding Incidents}">
+				<ListView.Header>
+					<Grid x:Name="gridView">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width=".5*" />
+							<ColumnDefinition Width=".5*" />
+							<ColumnDefinition Width="2*" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						
+						<Label Text="หมู่" Grid.Row="0" Grid.Column="0" />
+						<Label Text="บ้านเลขที่" Grid.Row="0" Grid.Column="1" />
+						<Label Text="เจ้าของบ้าน" Grid.Row="0" Grid.Column="2" />
+						<Label Text="จำนวนสัตว์ป่วย" Grid.Row="0" Grid.Column="3" />
+						<Label Text="จำนวนสัตว์ตาย" Grid.Row="0" Grid.Column="4" />
+						<Label Text="รวมทั้งหมด" Grid.Row="0" Grid.Column="5" />
+					</Grid>
+				</ListView.Header>
+				
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
