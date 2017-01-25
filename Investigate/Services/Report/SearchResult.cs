@@ -66,14 +66,29 @@ namespace Investigate
 		[JsonProperty("id")]
 		public int Id { get; set; }
 
+		[JsonProperty("reportTypeName")]
+		public string ReportTypeName { get; set; }
+
+		[JsonProperty("stateName")]
+		public string ReportStateName { get; set; }
+
 		[JsonProperty("date")]
 		public DateTime Date { get; set; }
+
+		[JsonProperty("incidentDate")]
+		public DateTime IncidentDate { get; set; }
 
 		[JsonProperty("administrationAreaAddress")]
 		public String AdministrationAreaName { get; set; }
 
-		[JsonProperty("createByName")]
+		[JsonProperty("createdByName")]
 		public String CreateByName { get; set; }
+
+		[JsonProperty("createdByContact")]
+		public String CreateByContact { get; set; }
+
+		[JsonProperty("createdByTelephone")]
+		public String CreateByTelephone { get; set; }
 
 		[JsonProperty("renderedOriginalFormData")]
 		public String RendererFormData { get; set; }

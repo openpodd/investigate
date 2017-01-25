@@ -39,6 +39,12 @@
     <EmbeddedResource Include="ReportInvestigateDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncidentsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -77,6 +83,14 @@
     <Compile Include="ReportInvestigateDetailPage.xaml.cs">
       <DependentUpon>ReportInvestigateDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReportDetailPage.xaml.cs">
+      <DependentUpon>ReportDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ReportInvestigateReportDetailViewModel.cs" />
+    <Compile Include="IncidentsPage.xaml.cs">
+      <DependentUpon>IncidentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\IncidentListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Remotion.Linq">

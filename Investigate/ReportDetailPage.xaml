@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Investigate.ReportDetailPage">
+	<ContentPage.Content>
+		<StackLayout BindingContext="{Binding ReportInvestigateInstance}">
+			
+			<StackLayout Orientation="Horizontal">
+				<Label Text="{Binding ReportStateName}" />
+				<Label Text="{Binding ReportTypeName}" />
+			</StackLayout>
+
+			<StackLayout>
+				<Label Text="{Binding ReportRendererFormData}" />
+			</StackLayout>
+
+			<Grid>
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+
+				<Label Text="พื้นที่" Grid.Row="0" Grid.Column="0" />
+				<Label Text="{Binding ReportAdministrationAreaName}" Grid.Row="0" Grid.Column="1" />
+
+				<Label Text="วันที่รายงาน" Grid.Row="1" Grid.Column="0" />
+				<Label Text="{Binding ReportDate, StringFormat='{0:dddd dd MMMM yyyy}'}" Grid.Row="1" Grid.Column="1" />
+
+				<Label Text="วันที่เกิดเหตุ" Grid.Row="2" Grid.Column="0" />
+				<Label Text="{Binding ReportIncidentDate, StringFormat='{0:dddd dd MMMM yyyy}'}" Grid.Row="2" Grid.Column="1" />
+
+				<Label Text="ผู้รายงาน" Grid.Row="3" Grid.Column="0" />
+				<Label Text="{Binding ReportCreateByName}" Grid.Row="3" Grid.Column="1" />
+
+				<Label Text="ติดต่อ" Grid.Row="4" Grid.Column="0" />
+				<Label Text="{Binding ReportCreateByContact}" Grid.Row="4" Grid.Column="1" />
+
+				<Label Text="เบอร์โทรส่วนตัว" Grid.Row="5" Grid.Column="0" />
+				<Label Text="{Binding ReportCreateByTelephone}" Grid.Row="5" Grid.Column="1" />
+			</Grid>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
-using System.Net.Http.Headers;
 using System.Diagnostics;
 
 namespace Investigate

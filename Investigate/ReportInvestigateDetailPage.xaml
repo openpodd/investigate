@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Investigate.ReportInvestigateDetailPage">
-	<ContentPage.Content>
-		<Label Text="Report Investigate page" />
-	</ContentPage.Content>
-</ContentPage>
+<TabbedPage
+		xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		x:Class="Investigate.ReportInvestigateDetailPage"
+		xmlns:local="clr-namespace:Investigate;assembly=Investigate">
+
+	<local:ReportDetailPage x:Name="reportDetailPage" Title="รายละเอียด" />
+	<local:IncidentsPage x:Name="incidentsPage" Title="สืบสวนโรค" />
+</TabbedPage>

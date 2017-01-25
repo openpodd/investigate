@@ -41,7 +41,7 @@ namespace Investigate
 		async void SelectItem(object sender, ItemTappedEventArgs e)
 		{
 			Debug.WriteLine("SelectItem called");
-			var page = new ReportInvestigateDetailPage((ReportInvestigate)e.Item);
+			var page = new ReportInvestigateDetailPage(((ReportInvestigate)e.Item).Id);
 			await Navigation.PushAsync(page, true);
 		}
 	}

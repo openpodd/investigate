@@ -27,12 +27,19 @@ namespace Investigate
 			{
 				foreach (var item in reports)
 				{
+					
 					realm.Add(new ReportInvestigate
 					{
+						Id = DateTimeOffset.Now.Ticks,
 						ReportId = item.Id,
 						ReportDate = item.Date,
+						ReportIncidentDate = new DateTimeOffset(item.IncidentDate),
+						ReportTypeName = item.ReportTypeName,
+						ReportStateName = item.ReportStateName,
 						ReportAdministrationAreaName = item.AdministrationAreaName,
 						ReportCreateByName = item.CreateByName,
+						ReportCreateByContact = item.CreateByContact,
+						ReportCreateByTelephone = item.CreateByTelephone,
 						ReportRendererFormData = item.RendererFormData
 					});
 				}

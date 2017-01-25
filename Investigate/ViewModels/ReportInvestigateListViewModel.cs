@@ -29,7 +29,7 @@ namespace Investigate
 		public ReportInvestigateListViewModel()
 		{
 			var realm = Realm.GetInstance();
-			ReportInvestigates = realm.All<ReportInvestigate>();
+			ReportInvestigates = realm.All<ReportInvestigate>().OrderByDescending(r => r.CreatedAt);
 		}
 
 		public void RefreshReportInvestigateListVisibility()
