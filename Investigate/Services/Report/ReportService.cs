@@ -4,7 +4,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
-
+using System.Diagnostics;
 
 namespace Investigate
 {
@@ -19,6 +19,7 @@ namespace Investigate
 
 			var uri = new Uri(ServerUrl + "/reports/search/");
 
+			Debug.WriteLine("Fetching reports from server");
 			var values = new Dictionary<string, string>();
 			values.Add("page", searchRequest.StartPage.ToString());
 			values.Add("page_size", searchRequest.ItemPerPage.ToString());

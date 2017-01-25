@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using Realms;
+using Xamarin.Forms;
 
 namespace Investigate
 {
@@ -21,6 +24,8 @@ namespace Investigate
 			get { return ReportInvestigates.Any(); }
 		}
 
+		public Action<ReportInvestigate> SelectItemAction { get; set; }
+
 		public ReportInvestigateListViewModel()
 		{
 			var realm = Realm.GetInstance();
@@ -32,6 +37,17 @@ namespace Investigate
 			OnPropertyChanged("IsEmptyReportInvestigates");
 			OnPropertyChanged("IsNotEmptyReportInvestigates");
 		}
-			
+
+		void OnSelectItem(object sender, SelectedItemChangedEventArgs e)
+		{
+			Debug.WriteLine("OnSelectItem called");
+			if (SelectItemAction != null)
+			{
+				if (e.SelectedItem != null) // not run on deselect
+				{
+					SelectItemAction((ReportInvestigate)e.SelectedItem);
+				}
+			}
+		}
 	}
 }

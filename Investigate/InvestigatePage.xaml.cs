@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Realms;
 using Xamarin.Forms;
 
@@ -6,9 +7,11 @@ namespace Investigate
 {
 	public partial class InvestigatePage : ContentPage
 	{
+		
 		public InvestigatePage()
 		{
 			InitializeComponent();
+			listView.ItemTapped += SelectItem;
 		}
 
 		async void OnLogoutButtonClicked(object sender, EventArgs e)
@@ -28,9 +31,18 @@ namespace Investigate
 
 		protected override void OnAppearing()
 		{
-			BindingContext = new ReportInvestigateListViewModel();
+			BindingContext = new ReportInvestigateListViewModel()
+			{
+				Navigation = Navigation
+			};
 			base.OnAppearing();
-			//((ReportInvestigateListViewModel)BindingContext).RefreshReportInvestigateListVisibility();
+		}
+
+		async void SelectItem(object sender, ItemTappedEventArgs e)
+		{
+			Debug.WriteLine("SelectItem called");
+			var page = new ReportInvestigateDetailPage((ReportInvestigate)e.Item);
+			await Navigation.PushAsync(page, true);
 		}
 	}
 }

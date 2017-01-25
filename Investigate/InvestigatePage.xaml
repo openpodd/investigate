@@ -19,7 +19,11 @@
 				VerticalOptions="CenterAndExpand"
 				IsVisible="{Binding IsEmptyReportInvestigates}" />
 
-			<ListView ItemsSource="{Binding ReportInvestigates}" RowHeight="50" IsVisible="{Binding IsNotEmptyReportInvestigates}">
+			<ListView
+					x:Name="listView"
+					ItemsSource="{Binding ReportInvestigates}"
+					RowHeight="50"
+					IsVisible="{Binding IsNotEmptyReportInvestigates}">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
