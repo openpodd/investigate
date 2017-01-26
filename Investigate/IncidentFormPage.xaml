@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Investigate.IncidentFormPage">
+	<ContentPage.Content>
+		
+		<StackLayout BindingContext="{Binding Incident}">
+			<StackLayout Padding="8" Spacing="12" x:Name="formHorizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="หมู่" Grid.Row="0" Grid.Column="0" />
+                    <Entry Text="{Binding Village}" WidthRequest="30" Grid.Row="0" Grid.Column="1" />
+
+                    <Label Text="บ้านเลขที่" Grid.Row="0" Grid.Column="2"  />
+                    <Entry Text="{Binding HouseNumber}" WidthRequest="30" Grid.Row="0" Grid.Column="3"  />
+
+                    <Label Text="เจ้าของบ้าน" Grid.Row="0" Grid.Column="4"  />
+                    <Entry Text="{Binding HouseOwnerName}" Grid.Row="0" Grid.Column="5"  />
+                </Grid>
+
+			    <Grid>
+					<Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+					
+			        <Label Text="เบอรโทร" Grid.Row="0" Grid.Column="0" />
+			        <Entry Text="{Binding HouseOwnerName}" Grid.Row="0" Grid.Column="1" />
+
+			        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="2">
+			            <Image Source="ico_location_pin.png" WidthRequest="17" HeightRequest="24" />
+			            <Label Text="กำลังหาตำแหน่ง" />
+			        </StackLayout>
+			    </Grid>
+			</StackLayout>
+
+		    <TableView Intent="Form" x:Name="formVertical">
+		        <TableRoot>
+		            <TableSection>
+                        <EntryCell Label="หมู่" Text="{Binding Village}" HorizontalTextAlignment="End" />
+		                <EntryCell Label="บ้านเลขที่" Text="{Binding HouseNumber}" HorizontalTextAlignment="End" />
+		                <EntryCell Label="เจ้าของบ้าน" Text="{Binding HouseOwnerName}" HorizontalTextAlignment="End" />
+		                <EntryCell Label="เบอร์โทร" Text="{Binding Telephone}" HorizontalTextAlignment="End" />
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="ico_location_pin.png" WidthRequest="17" HeightRequest="24" />
+                                <Label Text="กำลังหาตำแหน่ง" />
+                            </StackLayout>
+                        </ViewCell>
+		            </TableSection>
+		        </TableRoot>
+		    </TableView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

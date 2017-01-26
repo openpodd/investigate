@@ -9,8 +9,9 @@ namespace Investigate
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public INavigation Navigation;
+	    protected ReportInvestigate _reportInvestigate;
 
-		public BaseViewModel()
+	    public BaseViewModel()
 		{
 		}
 

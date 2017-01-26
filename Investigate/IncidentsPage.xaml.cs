@@ -19,5 +19,12 @@ namespace Investigate
 			BindingContext = new IncidentListViewModel(ReportInvestigateId);
 			base.OnAppearing();
 		}
+
+	    void OnItemTapped(object sender, ItemTappedEventArgs e)
+	    {
+	        var incident = (Incident) e.Item;
+            var formPage = new IncidentFormPage(incident);
+	        Navigation.PushAsync(formPage, true);
+	    }
 	}
 }

@@ -7,7 +7,7 @@
 				<Button Text="Add" Command="{Binding AddReportInvestigateCommand}" />
 			</StackLayout>
 
-			<ListView ItemsSource="{Binding Incidents}">
+			<ListView x:Name="listView" ItemTapped="OnItemTapped" ItemsSource="{Binding Incidents}">
 				<ListView.Header>
 					<Grid x:Name="gridView">
 						<Grid.ColumnDefinitions>

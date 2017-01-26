@@ -45,6 +45,9 @@
     <EmbeddedResource Include="IncidentsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="IncidentFormPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -91,6 +94,10 @@
       <DependentUpon>IncidentsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\IncidentListViewModel.cs" />
+    <Compile Include="IncidentFormPage.xaml.cs">
+      <DependentUpon>IncidentFormPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\IncidentFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Remotion.Linq">
