@@ -31,13 +31,13 @@ namespace Investigate
 	    {
 	        if (width > height)
 	        {
-	            formHorizontal.IsVisible = true;
-	            formVertical.IsVisible = false;
+	            FormHorizontal.IsVisible = true;
+	            FormVertical.IsVisible = false;
 	        }
 	        else
 	        {
-	            formHorizontal.IsVisible = false;
-	            formVertical.IsVisible = true;
+	            FormHorizontal.IsVisible = false;
+	            FormVertical.IsVisible = true;
 	        }
 	    }
 	}

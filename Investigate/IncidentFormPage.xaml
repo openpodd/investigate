@@ -3,7 +3,7 @@
 	<ContentPage.Content>
 		
 		<StackLayout BindingContext="{Binding Incident}">
-			<StackLayout Padding="8" Spacing="12" x:Name="formHorizontal">
+			<StackLayout Padding="8" Spacing="12" x:Name="FormHorizontal">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".5*" />
@@ -41,7 +41,7 @@
 			    </Grid>
 			</StackLayout>
 
-		    <TableView Intent="Form" x:Name="formVertical">
+		    <TableView Intent="Form" x:Name="FormVertical">
 		        <TableRoot>
 		            <TableSection>
                         <EntryCell Label="หมู่" Text="{Binding Village}" HorizontalTextAlignment="End" />
