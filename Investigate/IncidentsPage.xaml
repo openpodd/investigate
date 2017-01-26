@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Investigate.IncidentsPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Investigate.IncidentsPage"
+    Title="รายการจุดเกิดเหตุ">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="addButton" Text="+" />
+    </ContentPage.ToolbarItems>
+
 	<ContentPage.Content>
 		<StackLayout>
-			<StackLayout Orientation="Horizontal">
-				<Label Text="รายการจุดเกิดเหตุ" />
-				<Button Text="Add" Command="{Binding AddReportInvestigateCommand}" />
-			</StackLayout>
-
 			<ListView x:Name="listView" ItemTapped="OnItemTapped" ItemsSource="{Binding Incidents}">
 				<ListView.Header>
 					<Grid x:Name="gridView">

@@ -7,18 +7,30 @@ namespace Investigate
 {
 	public partial class IncidentFormPage : ContentPage
 	{
-	    private readonly Incident _incident;
+	    private long _reportInvestigateId;
+	    private readonly string _incidentUuid;
 
-		public IncidentFormPage(Incident incident)
+	    public IncidentFormPage(long reportInvestigateId)
+	    {
+	        _reportInvestigateId = reportInvestigateId;
+	        _incidentUuid = "";
+	        InitializeComponent();
+	    }
+
+	    public IncidentFormPage(long reportInvestigateId, string uuid)
 		{
-		    _incident = incident;
-			InitializeComponent();
+		    _incidentUuid = uuid;
+		    _reportInvestigateId = reportInvestigateId;
+		    InitializeComponent();
 		}
 
 	    protected override void OnAppearing()
 	    {
-	        BindingContext = new IncidentFormViewModel(_incident);
-	        base.OnAppearing();
+			BindingContext = new IncidentFormViewModel(_reportInvestigateId, _incidentUuid)
+			{
+				SaveSuccessAction = SaveSuccess
+			};
+			base.OnAppearing();
 	    }
 
 	    protected override void OnSizeAllocated(double width, double height)
@@ -39,6 +51,11 @@ namespace Investigate
 	            FormHorizontal.IsVisible = false;
 	            FormVertical.IsVisible = true;
 	        }
+	    }
+
+	    void SaveSuccess()
+	    {
+	        Navigation.PopAsync(true);
 	    }
 	}
 }

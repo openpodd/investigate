@@ -39,6 +39,9 @@ namespace Investigate
 
 	public class Incident : RealmObject
 	{
+	    [PrimaryKey]
+	    public String Uuid { get; set; }
+
 		public String Village { get; set; }
 		public String HouseNumber { get; set; }
 		public String HouseOwnerName { get; set; }
@@ -72,6 +75,10 @@ namespace Investigate
 
 		public Incident() : base()
 		{
+		    if (string.IsNullOrEmpty(Uuid))
+		    {
+		        Uuid = Guid.NewGuid().ToString("N");
+		    }
 			CreatedAt = System.DateTimeOffset.Now;
 			UpdatedAt = System.DateTimeOffset.Now;
 		}
