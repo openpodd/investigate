@@ -1,23 +1,30 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using Realms;
 using System.Diagnostics;
-using Xamarin.Forms;
-using System.Windows.Input;
+using System.Threading.Tasks;
 
 namespace Investigate
 {
 	public class IncidentListViewModel : BaseViewModel
 	{
 		ReportInvestigate ReportInvestigateInstance { get; set; }
-		public IList<Incident> Incidents { get; }
+		public IEnumerable<Incident> Incidents { get; set; }
 
-		public IncidentListViewModel(long reportInvestigateId)
+
+		/**
+		 * to use async method in constructor 
+		 * we must use this pattern to create instance
+		 */
+		public static async Task<IncidentListViewModel> create(long reportInvestigateId)
 		{
-			var realm = Realm.GetInstance();
-			ReportInvestigateInstance = realm.Find<ReportInvestigate>(reportInvestigateId);
-			Incidents = ReportInvestigateInstance.Incidents;
-			Debug.WriteLine(string.Format("Done loading from realm total {0} rows", Incidents.Count()));
+			var instance = new IncidentListViewModel();
+			instance.Incidents = await App.Repository.FindIncidentsByReportInvestigateId(reportInvestigateId);
+			Debug.WriteLine(string.Format("Done loading from db total {0} rows", instance.Incidents.Count()));
+			return instance;
+		}
+
+		private IncidentListViewModel()
+		{
 		}
 	}
 }

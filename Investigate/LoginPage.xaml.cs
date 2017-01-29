@@ -30,7 +30,8 @@ namespace Investigate
 				if (result.Success)
 				{
 					//messageLabel.Text = "Token = " + result.Message;
-					Navigation.InsertPageBefore(new InvestigatePage(), this);
+					Page nextPage = await InvestigatePage.Create();
+					Navigation.InsertPageBefore(nextPage, this);
 					await Navigation.PopAsync();
 				}
 				else {

@@ -7,7 +7,7 @@ namespace Investigate
 {
 	public partial class ReportDetailPage : ContentPage
 	{
-		public long ReportInvestigateId { get; set; }
+		public ReportInvestigate ReportInvestigate { get; set; }
 
 		public ReportDetailPage()
 		{
@@ -16,7 +16,7 @@ namespace Investigate
 
 		protected override void OnAppearing()
 		{
-			BindingContext = new ReportInvestigateReportDetailViewModel(ReportInvestigateId);
+			BindingContext = new ReportInvestigateReportDetailViewModel(ReportInvestigate);
 			base.OnAppearing();
 		}
 	}

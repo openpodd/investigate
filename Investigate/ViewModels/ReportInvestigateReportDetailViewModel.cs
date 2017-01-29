@@ -1,17 +1,12 @@
-﻿using System;
-using System.Linq;
-using Realms;
-
-namespace Investigate
+﻿namespace Investigate
 {
 	public class ReportInvestigateReportDetailViewModel : BaseViewModel
 	{
-		public ReportInvestigate ReportInvestigateInstance { get; set; }
+		public ReportInvestigate ReportInvestigate { get; set; }
 
-		public ReportInvestigateReportDetailViewModel(long reportInvestigateId)
+		public ReportInvestigateReportDetailViewModel(ReportInvestigate reportInvestigate)
 		{
-			var realm = Realm.GetInstance();
-			ReportInvestigateInstance = realm.Find<ReportInvestigate>(reportInvestigateId);
+			ReportInvestigate = reportInvestigate;
 		}
 	}
 }

@@ -1,11 +1,24 @@
 ﻿using System.Linq;
-using Realms;
 using Xamarin.Forms;
 
 namespace Investigate
 {
 	public partial class App : Application
 	{
+
+		static IRepository repository;
+		public static IRepository Repository
+		{
+			get
+			{
+				if (repository == null)
+				{
+					repository = new RepositoryImpl();
+				}
+				return repository;
+			}
+		}
+
 		public App()
 		{
 			InitializeComponent();
@@ -19,6 +32,7 @@ namespace Investigate
 				MainPage = new NavigationPage(new LoginPage());
 			}
 
+			Repository.initTableAsync();
 		}
 
 		protected override void OnStart()

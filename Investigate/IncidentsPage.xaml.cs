@@ -7,7 +7,7 @@ namespace Investigate
 {
 	public partial class IncidentsPage : ContentPage
 	{
-		public long ReportInvestigateId { get; set; }
+		public ReportInvestigate ReportInvestigate { get; set; }
 
 		public IncidentsPage()
 		{
@@ -15,23 +15,24 @@ namespace Investigate
 		    addButton.Clicked += OnClickAddButton;
 		}
 
-		protected override void OnAppearing()
+		protected async override void OnAppearing()
 		{
-		    Debug.WriteLine($"[IncidentsPage] ReportInvestigateId = {ReportInvestigateId}");
-		    BindingContext = new IncidentListViewModel(ReportInvestigateId);
+			Debug.WriteLine($"[IncidentsPage] ReportInvestigateId = {ReportInvestigate.Id}");
+			BindingContext = await IncidentListViewModel.create(ReportInvestigate.Id);
 		    base.OnAppearing();
 		}
 
 	    void OnItemTapped(object sender, ItemTappedEventArgs e)
 	    {
 	        var incident = (Incident) e.Item;
-            var formPage = new IncidentFormPage(ReportInvestigateId, incident.Uuid);
+            var formPage = new IncidentFormPage(ReportInvestigate.Id, incident.Uuid);
 	        Navigation.PushAsync(formPage, true);
 	    }
 
 	    void OnClickAddButton(object sender, EventArgs e)
 	    {
-	        var formPage = new IncidentFormPage(ReportInvestigateId);
+			Debug.WriteLine("add incident by reportInvestigateId {0}", ReportInvestigate.Id);
+	        var formPage = new IncidentFormPage(ReportInvestigate.Id, "");
 	        Navigation.PushAsync(formPage, true);
 	    }
 	}

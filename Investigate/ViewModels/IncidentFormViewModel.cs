@@ -1,77 +1,54 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using Realms;
 using Xamarin.Forms;
 
 namespace Investigate
 {
-    public class IncidentFormViewModel : BaseViewModel
-    {
-        public ReportInvestigate ReportInvestigate { get; }
-        public Incident Incident { get; set; }
-        private bool _isNew;
+	public class IncidentFormViewModel : BaseViewModel
+	{
+		public long ReportInvestigateId { get; set; }
+		public Incident Incident { get; set; }
 
 		public ICommand SaveCommand { get; private set; }
 		public Action SaveSuccessAction { get; set; }
 
-        public IncidentFormViewModel(long reportInvestigateId)
-        {
-            _isNew = true;
-            SaveCommand = new Command(Save);
-            var realm = Realm.GetInstance();
-            ReportInvestigate = realm.All<ReportInvestigate>().First(i => i.Id == reportInvestigateId);
+		public static async Task<IncidentFormViewModel> Create(long reportInvestigateId, string uuid)
+		{
+			var instance = new IncidentFormViewModel(reportInvestigateId, uuid);
+			instance.ReportInvestigateId = reportInvestigateId;
 
-            Incident = new Incident();
-        }
+			if (string.IsNullOrEmpty(uuid))
+			{
+				instance.Incident = new Incident();
+				instance.Incident.ReportInvestigateId = reportInvestigateId;
+			}
+			else
+			{
+				instance.Incident = await App.Repository.GetIncidentByUUID(uuid);
+			}
+			Debug.WriteLine($"Incident : {instance.Incident.Village} {instance.Incident.HouseNumber} {instance.Incident.HouseOwnerName}");
+
+
+			return instance;
+		}
 
 		public IncidentFormViewModel(long reportInvestigateId, string uuid)
 		{
-            SaveCommand = new Command(Save);
-            var realm = Realm.GetInstance();
-            ReportInvestigate = realm.All<ReportInvestigate>().First(i => i.Id == reportInvestigateId);
+			SaveCommand = new Command(Save);
+		}
 
-            if (string.IsNullOrEmpty(uuid))
-            {
-                _isNew = true;
-                Incident = new Incident();
-            }
-            else
-            {
-                _isNew = false;
-                var incident = realm.All<Incident>().First(i => i.Uuid == uuid);
-                Incident = new Incident()
-                {
-                    Uuid = incident.Uuid,
-                    Village = incident.Village,
-                    HouseNumber = incident.HouseNumber,
-                    HouseOwnerName = incident.HouseOwnerName,
-                    Telephone = incident.Telephone,
-                    CreatedAt = incident.CreatedAt,
-                    UpdatedAt = incident.UpdatedAt
-                };
-            }
-            Debug.WriteLine($"Incident : {Incident.Village} {Incident.HouseNumber} {Incident.HouseOwnerName}");
-        }
+		void Save()
+		{
+			Debug.WriteLine("SaveCommand called");
 
-        void Save()
-        {
-            Debug.WriteLine("SaveCommand called");
-            var realm = Realm.GetInstance();
-            realm.Write(() =>
-            {
-                Incident.UpdatedAt = DateTimeOffset.Now;
-                realm.Add(Incident, true);
+			Incident.UpdatedAt = DateTimeOffset.Now;
+			App.Repository.InsertOrUpdateAsync(Incident);
 
-                if (_isNew)
-                {
-                    ReportInvestigate.Incidents.Add(Incident);
-                }
-            });
-            Debug.WriteLine($"Saved : incident UUID : {Incident.Uuid}");
+			Debug.WriteLine($"Saved : incident UUID : {Incident.Uuid}");
 
-            SaveSuccessAction?.Invoke();
-        }
-    }
+			SaveSuccessAction?.Invoke();
+		}
+	}
 }

@@ -7,11 +7,11 @@ namespace Investigate
 {
 	public partial class ReportInvestigateDetailPage : TabbedPage
 	{
-		public ReportInvestigateDetailPage(long reportInvestigateId)
+		public ReportInvestigateDetailPage(ReportInvestigate reportInvestigate)
 		{
 			InitializeComponent();
-			reportDetailPage.ReportInvestigateId = reportInvestigateId;
-			incidentsPage.ReportInvestigateId = reportInvestigateId;
+			reportDetailPage.ReportInvestigate = reportInvestigate;
+			incidentsPage.ReportInvestigate = reportInvestigate;
 		}
 	}
 }

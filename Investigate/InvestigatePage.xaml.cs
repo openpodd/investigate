@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using Realms;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Investigate
@@ -8,18 +8,32 @@ namespace Investigate
 	public partial class InvestigatePage : ContentPage
 	{
 		
+		public static async Task<InvestigatePage> Create()
+		{
+			var instance = new InvestigatePage();
+			var viewModel = await ReportInvestigateListViewModel.create();
+			viewModel.Navigation = instance.Navigation;
+			instance.BindingContext = viewModel;
+			return instance;
+		}
+
 		public InvestigatePage()
 		{
 			InitializeComponent();
 			listView.ItemTapped += SelectItem;
 		}
 
+		protected async override void OnAppearing()
+		{
+			base.OnAppearing();
+			var viewModel = await ReportInvestigateListViewModel.create();
+			viewModel.Navigation = Navigation;
+			BindingContext = viewModel;
+		}
+
 		async void OnLogoutButtonClicked(object sender, EventArgs e)
 		{
 			Settings.Token = "";
-			var realm = Realm.GetInstance();
-			realm.Write(() => realm.RemoveAll());
-
 			Navigation.InsertPageBefore(new LoginPage(), this);
 			await Navigation.PopAsync();
 		}
@@ -29,19 +43,10 @@ namespace Investigate
 			await Navigation.PushAsync(new ReportSelectionPage(), true);
 		}
 
-		protected override void OnAppearing()
-		{
-			BindingContext = new ReportInvestigateListViewModel()
-			{
-				Navigation = Navigation
-			};
-			base.OnAppearing();
-		}
-
 		async void SelectItem(object sender, ItemTappedEventArgs e)
 		{
 			Debug.WriteLine("SelectItem called");
-			var page = new ReportInvestigateDetailPage(((ReportInvestigate)e.Item).Id);
+			var page = new ReportInvestigateDetailPage((ReportInvestigate)e.Item);
 			await Navigation.PushAsync(page, true);
 		}
 	}

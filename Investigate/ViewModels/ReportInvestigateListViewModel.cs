@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using Realms;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Investigate
@@ -26,10 +25,19 @@ namespace Investigate
 
 		public Action<ReportInvestigate> SelectItemAction { get; set; }
 
-		public ReportInvestigateListViewModel()
+		/**
+		 * to use async method in constructor 
+		 * we must use this pattern to create instance
+		 */
+		public static async Task<ReportInvestigateListViewModel> create()
 		{
-			var realm = Realm.GetInstance();
-			ReportInvestigates = realm.All<ReportInvestigate>().OrderByDescending(r => r.CreatedAt);
+			var instance = new ReportInvestigateListViewModel();
+			instance.ReportInvestigates = await App.Repository.AllReportInvestigates();
+			return instance;
+		}
+
+		private ReportInvestigateListViewModel()
+		{
 		}
 
 		public void RefreshReportInvestigateListVisibility()

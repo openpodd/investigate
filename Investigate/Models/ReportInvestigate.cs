@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Realms;
+using SQLite;
 
 namespace Investigate
 {
-	public class ReportInvestigate : RealmObject
+	public class ReportInvestigate
 	{
-		[PrimaryKey]
+		[PrimaryKey, AutoIncrement]
 		public long Id { get; set; }
 
 		public int ReportId { get; set; }
@@ -25,8 +24,6 @@ namespace Investigate
 		public String ReportCreateByTelephone { get; set; }
 		public String ReportRendererFormData { get; set; }
 
-		public IList<Incident> Incidents { get; }
-
 		public DateTimeOffset CreatedAt { get; set; }
 		public DateTimeOffset UpdatedAt { get; set; }
 
@@ -37,10 +34,13 @@ namespace Investigate
 		}
 	}
 
-	public class Incident : RealmObject
+	public class Incident
 	{
 	    [PrimaryKey]
 	    public String Uuid { get; set; }
+
+		[Indexed]
+		public long ReportInvestigateId { get; set; }
 
 		public String Village { get; set; }
 		public String HouseNumber { get; set; }
@@ -50,25 +50,23 @@ namespace Investigate
 		public Double Latitude { get; set; }
 		public Double Longitude { get; set; }
 
-		public IList<IncidentAnimalStat> IncidentAnimalStats { get; }
+		//[Ignore]
+		//public int SickTotal
+		//{
+		//	get { return IncidentAnimalStats.Sum(s => s.SickAccumulatedCount); }
+		//}
 
-		[Ignored]
-		public int SickTotal
-		{
-			get { return IncidentAnimalStats.Sum(s => s.SickAccumulatedCount); }
-		}
+		//[Ignore]
+		//public int DeathTotal
+		//{
+		//	get { return IncidentAnimalStats.Sum(s => s.DeathAccumulatedCount); }
+		//}
 
-		[Ignored]
-		public int DeathTotal
-		{
-			get { return IncidentAnimalStats.Sum(s => s.DeathAccumulatedCount); }
-		}
-
-		[Ignored]
-		public int SickDeathTotal
-		{
-			get { return SickTotal + DeathTotal; }
-		}
+		//[Ignore]
+		//public int SickDeathTotal
+		//{
+		//	get { return SickTotal + DeathTotal; }
+		//}
 
 		public DateTimeOffset CreatedAt { get; set; }
 		public DateTimeOffset UpdatedAt { get; set; }
@@ -84,7 +82,7 @@ namespace Investigate
 		}
 	}
 
-	public class IncidentAnimalStat : RealmObject
+	public class IncidentAnimalStat
 	{
 		public String AnimalType;
 		public DateTimeOffset Date;

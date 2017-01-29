@@ -10,12 +10,9 @@ namespace Investigate
 	    private long _reportInvestigateId;
 	    private readonly string _incidentUuid;
 
-	    public IncidentFormPage(long reportInvestigateId)
+	    public IncidentFormPage(long reportInvestigateId) : this(reportInvestigateId, "")
 	    {
-	        _reportInvestigateId = reportInvestigateId;
-	        _incidentUuid = "";
-	        InitializeComponent();
-	    }
+		}
 
 	    public IncidentFormPage(long reportInvestigateId, string uuid)
 		{
@@ -24,12 +21,11 @@ namespace Investigate
 		    InitializeComponent();
 		}
 
-	    protected override void OnAppearing()
+	    protected async override void OnAppearing()
 	    {
-			BindingContext = new IncidentFormViewModel(_reportInvestigateId, _incidentUuid)
-			{
-				SaveSuccessAction = SaveSuccess
-			};
+			var viewModel = await IncidentFormViewModel.Create(_reportInvestigateId, _incidentUuid);
+			viewModel.SaveSuccessAction = SaveSuccess;
+			BindingContext = viewModel;
 			base.OnAppearing();
 	    }
 
