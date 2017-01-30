@@ -7,8 +7,8 @@
 
 		public LoginRequest(string userName, string password)
 		{
-			this.Username = userName;
-			this.Password = password;
+			Username = userName;
+			Password = password;
 		}
 	}
 }

@@ -59,7 +59,7 @@ namespace Investigate
 			Reports.Clear();
 
 			var results = await PoddService.Search(new SearchRequest());
-			foreach (SearchItem item in results.results)
+			foreach (SearchItem item in results.Results)
 			{
 				Reports.Add(item);
 			}
