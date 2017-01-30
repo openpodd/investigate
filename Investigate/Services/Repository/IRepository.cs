@@ -11,7 +11,7 @@ namespace Investigate
 
 		Task createAsync(Incident incident);
 
-		Task InsertOrUpdateAsync(Incident incident);
+		Task InsertOrUpdateAsync<T>(T row);
 
 		Task<IEnumerable<ReportInvestigate>> AllReportInvestigates();
 
@@ -20,6 +20,8 @@ namespace Investigate
 		Task<Incident> GetIncidentByUUID(string uuid);
 
 	    Task<IEnumerable<IncidentResult>> GetIncidentListByReportInvestigateId(long id);
+	    Task<IEnumerable<IncidentAnimalStat>> GetIncidentAnimalStatListByIncidentUuid(string uuid);
+	    Task<IncidentAnimalStat> GetIncidentAnimalStatByUuid(string uuid);
 	}
 
     public class IncidentResult

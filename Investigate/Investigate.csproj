@@ -48,6 +48,12 @@
     <EmbeddedResource Include="IncidentFormPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="MyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncidentAnimalStatFormPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -63,6 +69,7 @@
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ViewModels\IncidentAnimalStatFormViewModel.cs" />
     <Compile Include="Views\TextEntry.cs" />
     <Compile Include="Constants\ReturnKeyType.cs" />
     <Compile Include="Views\BooleanToObjectConverter.cs" />
@@ -102,6 +109,13 @@
     <Compile Include="Services\Repository\IRepository.cs" />
     <Compile Include="Services\Repository\RepositoryImpl.cs" />
     <Compile Include="Services\Repository\IDatabase.cs" />
+    <Compile Include="MyPage.xaml.cs">
+      <DependentUpon>MyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IncidentAnimalStatPage.xaml.cs">
+      <DependentUpon>IncidentAnimalStatPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DateCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Remotion.Linq">

@@ -32,9 +32,9 @@ namespace Investigate
 			await database.InsertAsync(incident);
 		}
 
-		public async Task InsertOrUpdateAsync(Incident incident)
+		public async Task InsertOrUpdateAsync<T>(T row)
 		{
-			await database.InsertOrReplaceAsync(incident);
+			await database.InsertOrReplaceAsync(row);
 		}
 
 		public async Task<IEnumerable<ReportInvestigate>> AllReportInvestigates()
@@ -56,17 +56,27 @@ namespace Investigate
 	    {
 //	        const string query = " select * from Incident where ReportInvestigateId = ? ";
 	        const string query = " select" +
-	                             "   Uuid, Village, HouseNumber, HouseOwnerName," +
-	                             "   sum('SickCount') as 'SickTotal'," +
-	                             "   sum('DeathCount') as 'DeathTotal'," +
+	                             "   i.Uuid as 'Uuid', Village, HouseNumber, HouseOwnerName," +
+	                             "   sum('SickAccumulatedCount') as 'SickTotal'," +
+	                             "   sum('DeathAccumulatedCount') as 'DeathTotal'," +
 	                             "   'SickTotal' + 'DeathTotal' as 'SickDeathTotal'" +
 	                             " from Incident i" +
 	                             " left outer join IncidentAnimalStat s" +
 	                             " where i.ReportInvestigateId = ?" +
 	                             " group by i.Uuid" +
-	                             " order by CreatedAt desc";
+	                             " order by s.CreatedAt desc";
 
 	        return await database.QueryAsync<IncidentResult>(query, id);
+	    }
+
+	    public async Task<IEnumerable<IncidentAnimalStat>> GetIncidentAnimalStatListByIncidentUuid(string uuid)
+	    {
+	        return await database.QueryAsync<IncidentAnimalStat>("select * from IncidentAnimalStat where IncidentUuid = ? order by 'CreatedAt' desc", uuid);
+	    }
+
+	    public async Task<IncidentAnimalStat> GetIncidentAnimalStatByUuid(string uuid)
+	    {
+	        return await database.GetAsync<IncidentAnimalStat>(uuid);
 	    }
 	}
 }

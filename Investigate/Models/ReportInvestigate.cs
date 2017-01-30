@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SQLite;
 
 namespace Investigate
@@ -50,16 +51,27 @@ namespace Investigate
 		}
 	}
 
-	public class IncidentAnimalStat
+	public class IncidentAnimalStat : BaseModel
 	{
+	    [PrimaryKey]
+	    public String Uuid { get; set; }
+
 	    [Indexed]
 	    public string IncidentUuid { get; set; }
 
-	    public String AnimalType;
-		public DateTimeOffset Date;
-		public int SickCount;
-		public int DeathCount;
-		public int SickAccumulatedCount;
-		public int DeathAccumulatedCount;
+	    public String AnimalType { get; set; }
+		public DateTimeOffset Date { get; set; }
+	    public int SickCount { get; set; }
+	    public int DeathCount { get; set; }
+	    public int SickAccumulatedCount { get; set; }
+	    public int DeathAccumulatedCount { get; set; }
+
+	    public IncidentAnimalStat() : base()
+	    {
+	        if (string.IsNullOrEmpty(Uuid))
+	        {
+	            Uuid = Guid.NewGuid().ToString("N");
+	        }
+	    }
 	}
 }

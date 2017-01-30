@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace Investigate
@@ -52,6 +52,20 @@ namespace Investigate
 	    void SaveSuccess()
 	    {
 	        Navigation.PopAsync(true);
+	    }
+
+	    void OnClickNewStatButton(object sender, EventArgs e)
+	    {
+	        var page = new IncidentAnimalStatFormPage(_incidentUuid, "");
+	        Navigation.PushAsync(page, true);
+	    }
+
+	    void OnItemTapped(object sender, ItemTappedEventArgs e)
+	    {
+	        var item = (IncidentAnimalStat) e.Item;
+	        Debug.WriteLine($"IncidentFormPage:OnItemTapped called with UUID : {item.Uuid}");
+	        var page = new IncidentAnimalStatFormPage(_incidentUuid, item.Uuid);
+	        Navigation.PushAsync(page, true);
 	    }
 	}
 }
