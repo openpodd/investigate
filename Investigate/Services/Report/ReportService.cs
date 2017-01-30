@@ -13,8 +13,6 @@ namespace Investigate
 		{
 			var httpClient = new HttpClient();
 			httpClient.DefaultRequestHeaders.Add("Authorization", "Token " + Settings.Token);
-			//httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", Settings.Token);
-
 
 			var uri = new Uri(ServerUrl + "/reports/search/");
 
@@ -26,6 +24,11 @@ namespace Investigate
 		        {"q", "negative:true AND typeName:\"สัตว์ป่วย/ตาย\""},
 		        {"tz", "7"}
 		    };
+
+		    if (searchRequest.AuthorityId != -99)
+		    {
+                values.Add("authorities", searchRequest.AuthorityId.ToString());
+		    }
 
 		    var content = new FormUrlEncodedContent(values);
 			var query = await content.ReadAsStringAsync();

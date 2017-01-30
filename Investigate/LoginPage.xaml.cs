@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Investigate
 {
 	public partial class LoginPage : ContentPage
 	{
-
-		PoddService service = null;
+	    readonly PoddService service = null;
 
 		public LoginPage()
 		{
@@ -30,6 +29,8 @@ namespace Investigate
 				if (result.Success)
 				{
 					//messageLabel.Text = "Token = " + result.Message;
+
+				    await FetchAuthorities();
 					Page nextPage = await InvestigatePage.Create();
 					Navigation.InsertPageBefore(nextPage, this);
 					await Navigation.PopAsync();
@@ -43,7 +44,7 @@ namespace Investigate
 			}
 		}
 
-		bool Validate()
+		public bool Validate()
 		{
 			usernameLengthValidator.ValidateLength(userNameEntry);
 			passwordLengthValidator.ValidateLength(passwordEntry);
@@ -58,6 +59,11 @@ namespace Investigate
 				return true;
 			}
 		}
+
+	    private async Task FetchAuthorities()
+	    {
+	        await service.GetAuthorities();
+	    }
 
 	}
 }

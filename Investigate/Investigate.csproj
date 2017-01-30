@@ -48,6 +48,9 @@
     <EmbeddedResource Include="IncidentFormPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="AuthoritySelectPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -68,7 +71,10 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Services\Authority\AuthorityResult.cs" />
+    <Compile Include="Services\Authority\AuthorityService.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ViewModels\AuthoritySelectViewModel.cs" />
     <Compile Include="ViewModels\IncidentAnimalStatFormViewModel.cs" />
     <Compile Include="Views\TextEntry.cs" />
     <Compile Include="Constants\ReturnKeyType.cs" />
@@ -109,6 +115,9 @@
     <Compile Include="Services\Repository\IRepository.cs" />
     <Compile Include="Services\Repository\RepositoryImpl.cs" />
     <Compile Include="Services\Repository\IDatabase.cs" />
+    <Compile Include="AuthoritySelectPage.xaml.cs">
+      <DependentUpon>AuthoritySelectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyPage.xaml.cs">
       <DependentUpon>MyPage.xaml</DependentUpon>
     </Compile>

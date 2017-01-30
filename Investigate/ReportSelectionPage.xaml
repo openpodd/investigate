@@ -3,7 +3,7 @@
 		xmlns="http://xamarin.com/schemas/2014/forms"
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 		x:Class="Investigate.ReportSelectionPage"
-		xmlns:local="clr-namespace:Investigate">
+        >
 
 	<ContentPage.ToolbarItems>
 		<ToolbarItem
@@ -23,6 +23,15 @@
 			
 			<StackLayout HorizontalOptions="FillAndExpand">
 				<Label Text="Filter" />
+
+                <Label x:Name="AuthorityLabel" 
+						TextColor="{Binding AuthorityLabelColor}"
+						Text="{Binding AuthorityLabelText}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AuthorityLabelTappedCommand}"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+
 				<Button x:Name="searchButton" Text="Search" Command="{Binding SearchCommand}"></Button>
 			</StackLayout>
 

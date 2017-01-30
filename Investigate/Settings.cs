@@ -1,32 +1,25 @@
-﻿using System;
-using Plugin.Settings;
+﻿using Plugin.Settings;
 using Plugin.Settings.Abstractions;
-
 
 namespace Investigate
 {
 	public static class Settings
 	{
-		private static ISettings AppSettings
-		{
-			get
-			{
-				return CrossSettings.Current;
-			}
-		}
+		private static ISettings AppSettings => CrossSettings.Current;
 
 
-		const string TOKEN_KEY = "token";
+
+	    private const string TokenKey = "token";
 
 		public static string Token
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault<String>(TOKEN_KEY, "");
+				return AppSettings.GetValueOrDefault(TokenKey, "");
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue<String>(TOKEN_KEY, value);
+				AppSettings.AddOrUpdateValue(TokenKey, value);
 			}
 		}
 
@@ -35,5 +28,27 @@ namespace Investigate
 			return Token != "";
 		}
 
+
+
+	    private const string AuthoritiesKey = "authorities";
+
+	    public static string Authorities
+	    {
+	        get
+	        {
+	            return AppSettings.GetValueOrDefault(AuthoritiesKey, "");
+	        }
+	        set
+	        {
+	            AppSettings.AddOrUpdateValue(AuthoritiesKey, value);
+	        }
+	    }
+
+
+	    public static void Clear()
+	    {
+	        Authorities = "";
+	        Token = "";
+	    }
 	}
 }

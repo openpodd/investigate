@@ -33,7 +33,7 @@ namespace Investigate
 
 		async void OnLogoutButtonClicked(object sender, EventArgs e)
 		{
-			Settings.Token = "";
+			Settings.Clear();
 			Navigation.InsertPageBefore(new LoginPage(), this);
 			await Navigation.PopAsync();
 		}

@@ -9,5 +9,7 @@ namespace Investigate
 		Task<SearchResult> Search(SearchRequest searchRequest);
 
 		Task<LoginResult> Login(LoginRequest request);
+
+	    Task<AuthorityResult> GetAuthorities();
 	}
 }

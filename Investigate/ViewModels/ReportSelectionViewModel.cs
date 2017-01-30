@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -16,8 +19,9 @@ namespace Investigate
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public Action CloseAction { set; get; } = () => { };
+	    public Action ShowAuthoritySelectPageAction { set; get; } = () => { };
 
-		public IPoddService PoddService { set; get; }
+	    public IPoddService PoddService { set; get; }
 
 		public ObservableCollection<SearchItem> Reports { get; }
 		public int NumberOfReports
@@ -43,13 +47,23 @@ namespace Investigate
 		public ICommand SelectReportCommand { get; }
 		public ICommand ReportSelectionDoneCommand { get; }
 
-		public ReportSelectionViewModel()
+	    public String AuthorityLabelColor { get; set; }
+	    public String AuthorityLabelText { get; set; }
+	    public ICommand AuthorityLabelTappedCommand { get; }
+	    private AuthorityItem _authorityItem;
+
+
+	    public ReportSelectionViewModel()
 		{
 			Reports = new ObservableCollection<SearchItem>();
 			SelectedReports = new HashSet<SearchItem>();
 			SearchCommand = new Command(async () => await Search(), () => canSearch);
 			SelectReportCommand = new Command<SearchItem>(SelectReport);
 			ReportSelectionDoneCommand = new Command(ReportSelectionDone);
+
+		    AuthorityLabelColor = "#999";
+		    AuthorityLabelText = "Tap here to change Authority";
+		    AuthorityLabelTappedCommand = new Command(PopupAuthoritySelectPage);
 		}
 
 		async Task Search()
@@ -58,7 +72,10 @@ namespace Investigate
 
 			Reports.Clear();
 
-			var results = await PoddService.Search(new SearchRequest());
+			var results = await PoddService.Search(new SearchRequest()
+			{
+			    AuthorityId = _authorityItem?.Id ?? -99
+			});
 			foreach (SearchItem item in results.Results)
 			{
 				Reports.Add(item);
@@ -100,5 +117,21 @@ namespace Investigate
 				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+
+	    public void PopupAuthoritySelectPage()
+	    {
+	        ShowAuthoritySelectPageAction();
+            Debug.WriteLine("AuthoritySelect called");
+	    }
+
+	    public void SetAuthorityFilter(AuthorityItem authorityItem)
+	    {
+	        _authorityItem = authorityItem;
+            AuthorityLabelColor = "#333";
+	        AuthorityLabelText = authorityItem.Name;
+	        OnPropertyChanged("AuthorityLabelColor");
+	        OnPropertyChanged("AuthorityLabelText");
+	    }
+
 	}
 }
