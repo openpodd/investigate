@@ -8,7 +8,7 @@ namespace Investigate
 	public class IncidentListViewModel : BaseViewModel
 	{
 		ReportInvestigate ReportInvestigateInstance { get; set; }
-		public IEnumerable<Incident> Incidents { get; set; }
+		public IEnumerable<IncidentResult> Incidents { get; set; }
 
 
 		/**
@@ -18,7 +18,7 @@ namespace Investigate
 		public static async Task<IncidentListViewModel> create(long reportInvestigateId)
 		{
 			var instance = new IncidentListViewModel();
-			instance.Incidents = await App.Repository.FindIncidentsByReportInvestigateId(reportInvestigateId);
+			instance.Incidents = await App.Repository.GetIncidentListByReportInvestigateId(reportInvestigateId);
 			Debug.WriteLine(string.Format("Done loading from db total {0} rows", instance.Incidents.Count()));
 			return instance;
 		}

@@ -24,8 +24,9 @@ namespace Investigate
 
 	    void OnItemTapped(object sender, ItemTappedEventArgs e)
 	    {
-	        var incident = (Incident) e.Item;
+			var incident = (IncidentResult) e.Item;
             var formPage = new IncidentFormPage(ReportInvestigate.Id, incident.Uuid);
+	        Debug.WriteLine($"Loading incident UUID: {incident.Uuid}");
 	        Navigation.PushAsync(formPage, true);
 	    }
 

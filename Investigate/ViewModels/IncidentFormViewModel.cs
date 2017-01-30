@@ -46,7 +46,8 @@ namespace Investigate
 			Incident.UpdatedAt = DateTimeOffset.Now;
 			App.Repository.InsertOrUpdateAsync(Incident);
 
-			Debug.WriteLine($"Saved : incident UUID : {Incident.Uuid}");
+		    Debug.WriteLine($"Updated Incident : {Incident.Village} {Incident.HouseNumber} {Incident.HouseOwnerName}");
+		    Debug.WriteLine($"Saved : incident UUID : {Incident.Uuid}");
 
 			SaveSuccessAction?.Invoke();
 		}

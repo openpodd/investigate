@@ -18,5 +18,18 @@ namespace Investigate
 		Task<IEnumerable<Incident>> FindIncidentsByReportInvestigateId(long investigateId);
 
 		Task<Incident> GetIncidentByUUID(string uuid);
+
+	    Task<IEnumerable<IncidentResult>> GetIncidentListByReportInvestigateId(long id);
 	}
+
+    public class IncidentResult
+    {
+        public string Uuid { get; set; }
+        public string Village { get; set; }
+        public string HouseNumber { get; set; }
+        public string HouseOwnerName { get; set; }
+        public int SickTotal { get; set; }
+        public int DeathTotal { get; set; }
+        public int SickDeathTotal { get; set; }
+    }
 }

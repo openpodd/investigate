@@ -5,7 +5,7 @@ using SQLite;
 
 namespace Investigate
 {
-	public class ReportInvestigate
+	public class ReportInvestigate : BaseModel
 	{
 		[PrimaryKey, AutoIncrement]
 		public long Id { get; set; }
@@ -23,18 +23,9 @@ namespace Investigate
 		public String ReportCreateByContact { get; set; }
 		public String ReportCreateByTelephone { get; set; }
 		public String ReportRendererFormData { get; set; }
-
-		public DateTimeOffset CreatedAt { get; set; }
-		public DateTimeOffset UpdatedAt { get; set; }
-
-		public ReportInvestigate() : base()
-		{
-			CreatedAt = System.DateTimeOffset.Now;
-			UpdatedAt = System.DateTimeOffset.Now;
-		}
 	}
 
-	public class Incident
+	public class Incident : BaseModel
 	{
 	    [PrimaryKey]
 	    public String Uuid { get; set; }
@@ -50,54 +41,25 @@ namespace Investigate
 		public Double Latitude { get; set; }
 		public Double Longitude { get; set; }
 
-		//[Ignore]
-		//public int SickTotal
-		//{
-		//	get { return IncidentAnimalStats.Sum(s => s.SickAccumulatedCount); }
-		//}
-
-		//[Ignore]
-		//public int DeathTotal
-		//{
-		//	get { return IncidentAnimalStats.Sum(s => s.DeathAccumulatedCount); }
-		//}
-
-		//[Ignore]
-		//public int SickDeathTotal
-		//{
-		//	get { return SickTotal + DeathTotal; }
-		//}
-
-		public DateTimeOffset CreatedAt { get; set; }
-		public DateTimeOffset UpdatedAt { get; set; }
-
 		public Incident() : base()
 		{
 		    if (string.IsNullOrEmpty(Uuid))
 		    {
 		        Uuid = Guid.NewGuid().ToString("N");
 		    }
-			CreatedAt = System.DateTimeOffset.Now;
-			UpdatedAt = System.DateTimeOffset.Now;
 		}
 	}
 
 	public class IncidentAnimalStat
 	{
-		public String AnimalType;
+	    [Indexed]
+	    public string IncidentUuid { get; set; }
+
+	    public String AnimalType;
 		public DateTimeOffset Date;
 		public int SickCount;
 		public int DeathCount;
 		public int SickAccumulatedCount;
 		public int DeathAccumulatedCount;
-
-		public DateTimeOffset CreatedAt { get; set; }
-		public DateTimeOffset UpdatedAt { get; set; }
-
-		public IncidentAnimalStat() : base()
-		{
-			CreatedAt = System.DateTimeOffset.Now;
-			UpdatedAt = System.DateTimeOffset.Now;
-		}
 	}
 }
