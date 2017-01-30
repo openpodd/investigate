@@ -1,15 +1,14 @@
-﻿using System;
-namespace Investigate
+﻿namespace Investigate
 {
 	public class LoginRequest
 	{
-		public String Username { get; }
-		public String Password { get; }
+		public string Username { get; }
+		public string Password { get; }
 
-		public LoginRequest(String userName, String password)
+		public LoginRequest(string userName, string password)
 		{
-			this.Username = userName;
-			this.Password = password;
+			Username = userName;
+			Password = password;
 		}
 	}
 }

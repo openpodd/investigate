@@ -19,13 +19,15 @@ namespace Investigate
 			var uri = new Uri(ServerUrl + "/reports/search/");
 
 			Debug.WriteLine("Fetching reports from server");
-			var values = new Dictionary<string, string>();
-			values.Add("page", searchRequest.StartPage.ToString());
-			values.Add("page_size", searchRequest.ItemPerPage.ToString());
-			values.Add("q", "negative:true AND typeName:\"สัตว์ป่วย/ตาย\"");
-			values.Add("tz", "7");
+		    var values = new Dictionary<string, string>
+		    {
+		        {"page", searchRequest.StartPage.ToString()},
+		        {"page_size", searchRequest.ItemPerPage.ToString()},
+		        {"q", "negative:true AND typeName:\"สัตว์ป่วย/ตาย\""},
+		        {"tz", "7"}
+		    };
 
-			var content = new FormUrlEncodedContent(values);
+		    var content = new FormUrlEncodedContent(values);
 			var query = await content.ReadAsStringAsync();
 
 			var response = await httpClient.GetAsync(uri + "?" + query);

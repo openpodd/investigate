@@ -1,9 +1,8 @@
-﻿using System;
-namespace Investigate
+﻿namespace Investigate
 {
 	public class LoginResult
 	{
-		public String UserName
+		public string UserName
 		{
 			get;
 		}
@@ -13,12 +12,12 @@ namespace Investigate
 			get;
 		}
 
-		public String Message
+		public string Message
 		{
 			get;
 		}
 
-		public LoginResult(String userName, bool success, String message)
+		public LoginResult(string userName, bool success, string message)
 		{
 			this.UserName = userName;
 			this.Success = success;

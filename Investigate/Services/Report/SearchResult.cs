@@ -56,7 +56,7 @@ namespace Investigate
 		public string NextUri;
 
 		[JsonProperty("results")]
-		public SearchItem[] results;
+		public SearchItem[] Results;
 
 	}
 
@@ -79,18 +79,18 @@ namespace Investigate
 		public DateTime IncidentDate { get; set; }
 
 		[JsonProperty("administrationAreaAddress")]
-		public String AdministrationAreaName { get; set; }
+		public string AdministrationAreaName { get; set; }
 
 		[JsonProperty("createdByName")]
-		public String CreateByName { get; set; }
+		public string CreateByName { get; set; }
 
 		[JsonProperty("createdByContact")]
-		public String CreateByContact { get; set; }
+		public string CreateByContact { get; set; }
 
 		[JsonProperty("createdByTelephone")]
-		public String CreateByTelephone { get; set; }
+		public string CreateByTelephone { get; set; }
 
 		[JsonProperty("renderedOriginalFormData")]
-		public String RendererFormData { get; set; }
+		public string RendererFormData { get; set; }
 	}
 }
