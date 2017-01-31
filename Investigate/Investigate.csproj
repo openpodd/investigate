@@ -121,8 +121,8 @@
     <Compile Include="MyPage.xaml.cs">
       <DependentUpon>MyPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IncidentAnimalStatPage.xaml.cs">
-      <DependentUpon>IncidentAnimalStatPage.xaml</DependentUpon>
+    <Compile Include="IncidentAnimalStatFormPage.xaml.cs">
+      <DependentUpon>IncidentAnimalStatFormPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DateCell.cs" />
   </ItemGroup>
