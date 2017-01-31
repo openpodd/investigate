@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
@@ -34,8 +35,15 @@ namespace Investigate
 		[Indexed]
 		public long ReportInvestigateId { get; set; }
 
-		public String Village { get; set; }
-		public String HouseNumber { get; set; }
+	    private string _village;
+
+	    public String Village
+	    {
+	        get { return _village;  }
+	        set { _village = value; Debug.WriteLine($"Value Village is set to {value}"); }
+	    }
+
+	    public String HouseNumber { get; set; }
 		public String HouseOwnerName { get; set; }
 		public String Telephone { get; set; }
 
@@ -59,8 +67,15 @@ namespace Investigate
 	    [Indexed]
 	    public string IncidentUuid { get; set; }
 
-	    public String AnimalType { get; set; }
-		public DateTimeOffset Date { get; set; }
+	    private string _animalType;
+
+	    public String AnimalType
+	    {
+	        get { return _animalType; }
+	        set { _animalType = value; Debug.WriteLine($"Value AnimalType is set to {value}"); }
+	    }
+
+	    public DateTimeOffset Date { get; set; }
 	    public int SickCount { get; set; }
 	    public int DeathCount { get; set; }
 	    public int SickAccumulatedCount { get; set; }

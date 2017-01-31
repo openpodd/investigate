@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,38 +11,20 @@ using Xamarin.Forms;
 
 namespace Investigate
 {
-	public class ReportSelectionViewModel : INotifyPropertyChanged
+	public class ReportSelectionViewModel : BaseViewModel
 	{
+	    public IPoddService PoddService { set; get; }
 
-		public Action<HashSet<SearchItem>> DoneReportSelection { get; set; }
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
+	    public Action<HashSet<SearchItem>> DoneReportSelection { get; set; }
 		public Action CloseAction { set; get; } = () => { };
 	    public Action ShowAuthoritySelectPageAction { set; get; } = () => { };
 
-	    public IPoddService PoddService { set; get; }
-
 		public ObservableCollection<SearchItem> Reports { get; }
-		public int NumberOfReports
-		{ 
-			get
-			{
-				return Reports.Count;
-			}
-		}
+		public int NumberOfReports => Reports.Count;
+        public HashSet<SearchItem> SelectedReports { get; }
+		public int NumberOfSelectedReports => SelectedReports.Count;
 
-
-		public HashSet<SearchItem> SelectedReports { get; }
-		public int NumberOfSelectedReports
-		{
-			get
-			{
-				return SelectedReports.Count;
-			}
-		}
-
-		bool canSearch = true;
+	    private bool canSearch = true;
 		public ICommand SearchCommand { get; }
 		public ICommand SelectReportCommand { get; }
 		public ICommand ReportSelectionDoneCommand { get; }
@@ -66,56 +48,47 @@ namespace Investigate
 		    AuthorityLabelTappedCommand = new Command(PopupAuthoritySelectPage);
 		}
 
-		async Task Search()
+	    private async Task Search()
 		{
+			Debug.WriteLine("[ReportSelectionViewModel] Before set canSearch = false");
 			CanSearch(false);
 
 			Reports.Clear();
 
-			var results = await PoddService.Search(new SearchRequest()
+		    Debug.WriteLine("[ReportSelectionViewModel] Before PoddService.Search");
+		    var results = await PoddService.Search(new SearchRequest()
 			{
 			    AuthorityId = _authorityItem?.Id ?? -99
 			});
-			foreach (SearchItem item in results.Results)
+		    Debug.WriteLine("[ReportSelectionViewModel] After PoddService.Search");
+		    foreach (var item in results.Results)
 			{
 				Reports.Add(item);
 			}
 
 			CanSearch(true);
-			OnPropertyChanged("Reports");
+		    Debug.WriteLine("[ReportSelectionViewModel] After set canSearch = true");
+		    OnPropertyChanged("Reports");
 			OnPropertyChanged("NumberOfReports");
 		}
 
-		void CanSearch(bool value)
+		public void CanSearch(bool value)
 		{
 			canSearch = value;
 			((Command)SearchCommand).ChangeCanExecute();
 		}
 
-		void SelectReport(SearchItem report)
+	    private void SelectReport(SearchItem report)
 		{
-			if (!SelectedReports.Contains(report))
-			{
-				SelectedReports.Add(report);
-				OnPropertyChanged("NumberOfSelectedReports");
-			}
+		    if (SelectedReports.Contains(report)) return;
+
+		    SelectedReports.Add(report);
+		    OnPropertyChanged("NumberOfSelectedReports");
 		}
 
-		void ReportSelectionDone()
+	    private void ReportSelectionDone()
 		{
-			if (DoneReportSelection != null)
-			{
-				DoneReportSelection(SelectedReports);
-			}
-		}
-
-		protected virtual void OnPropertyChanged(string propertyName)
-		{
-			var changed = PropertyChanged;
-			if (changed != null)
-			{
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+		    DoneReportSelection?.Invoke(SelectedReports);
 		}
 
 	    public void PopupAuthoritySelectPage()

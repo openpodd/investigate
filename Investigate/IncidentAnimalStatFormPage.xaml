@@ -8,17 +8,21 @@
     </ContentPage.ToolbarItems>
 
 	<ContentPage.Content>
-	    <TableView Intent="Form" BindingContext="IncidentAnimalStat">
-	        <TableRoot>
-	            <TableSection>
-	                <EntryCell Label="ชนิดสัตว์" Text="{Binding AnimalType}" HorizontalTextAlignment="End" />
-                    <local:DateCell Label="วันที่" Date="{Binding Date}" />
-	                <EntryCell Label="ป่วย" Text="{Binding SickCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
-	                <EntryCell Label="ตาย" Text="{Binding DeathCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
-	                <EntryCell Label="ป่วยสะสม" Text="{Binding SickAccumulatedCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
-	                <EntryCell Label="ตายสะสม" Text="{Binding DeathAccumulatdCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
-	            </TableSection>
-	        </TableRoot>
-	    </TableView>
+        <StackLayout>
+            <Label Text="{Binding IncidentAnimalStat}" />
+
+            <TableView Intent="Form" BindingContext="IncidentAnimalStat">
+                <TableRoot>
+                    <TableSection>
+                        <EntryCell Label="ชนิดสัตว์" Text="{Binding AnimalType}" HorizontalTextAlignment="End" />
+                        <local:DateCell Label="วันที่" Date="{Binding Date}" />
+                        <EntryCell Label="ป่วย" Text="{Binding SickCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
+                        <EntryCell Label="ตาย" Text="{Binding DeathCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
+                        <EntryCell Label="ป่วยสะสม" Text="{Binding SickAccumulatedCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
+                        <EntryCell Label="ตายสะสม" Text="{Binding DeathAccumulatdCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+	    </StackLayout>
 	</ContentPage.Content>
 </ContentPage>
