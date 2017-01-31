@@ -7,8 +7,8 @@ namespace Investigate
 {
 	public partial class IncidentFormPage : ContentPage
 	{
-	    private long _reportInvestigateId;
-	    private readonly string _incidentUuid;
+	    public long ReportInvestigateId;
+	    public readonly string IncidentUuid;
 
 	    public IncidentFormPage(long reportInvestigateId) : this(reportInvestigateId, "")
 	    {
@@ -16,14 +16,14 @@ namespace Investigate
 
 	    public IncidentFormPage(long reportInvestigateId, string uuid)
 		{
-		    _incidentUuid = uuid;
-		    _reportInvestigateId = reportInvestigateId;
+		    IncidentUuid = uuid;
+		    ReportInvestigateId = reportInvestigateId;
 		    InitializeComponent();
 		}
 
 	    protected async override void OnAppearing()
 	    {
-			var viewModel = await IncidentFormViewModel.Create(_reportInvestigateId, _incidentUuid);
+			var viewModel = await IncidentFormViewModel.Create(ReportInvestigateId, IncidentUuid);
 			viewModel.SaveSuccessAction = SaveSuccess;
 			BindingContext = viewModel;
 			base.OnAppearing();
@@ -56,7 +56,7 @@ namespace Investigate
 
 	    void OnClickNewStatButton(object sender, EventArgs e)
 	    {
-	        var page = new IncidentAnimalStatFormPage(_incidentUuid, "");
+	        var page = new IncidentAnimalStatFormPage(IncidentUuid, "");
 	        Navigation.PushAsync(page, true);
 	    }
 
@@ -64,7 +64,7 @@ namespace Investigate
 	    {
 	        var item = (IncidentAnimalStat) e.Item;
 	        Debug.WriteLine($"IncidentFormPage:OnItemTapped called with UUID : {item.Uuid}");
-	        var page = new IncidentAnimalStatFormPage(_incidentUuid, item.Uuid);
+	        var page = new IncidentAnimalStatFormPage(IncidentUuid, item.Uuid);
 	        Navigation.PushAsync(page, true);
 	    }
 	}

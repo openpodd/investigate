@@ -57,6 +57,21 @@
     <EmbeddedResource Include="IncidentAnimalStatFormPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="IncidentListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncidentAnimalStatListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncidentMasterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncidentMasterDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -66,6 +81,7 @@
       <DependentUpon>InvestigatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -76,6 +92,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\AuthoritySelectViewModel.cs" />
     <Compile Include="ViewModels\IncidentAnimalStatFormViewModel.cs" />
+    <Compile Include="ViewModels\IncidentMasterDetailViewModel.cs" />
     <Compile Include="Views\TextEntry.cs" />
     <Compile Include="Constants\ReturnKeyType.cs" />
     <Compile Include="Views\BooleanToObjectConverter.cs" />
@@ -125,6 +142,21 @@
       <DependentUpon>IncidentAnimalStatFormPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DateCell.cs" />
+    <Compile Include="IncidentListPage.xaml.cs">
+      <DependentUpon>IncidentListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IncidentAnimalStatListPage.xaml.cs">
+      <DependentUpon>IncidentAnimalStatListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IncidentMasterPage.xaml.cs">
+      <DependentUpon>IncidentMasterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XPage.xaml.cs">
+      <DependentUpon>XPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IncidentMasterDetailPage.xaml.cs">
+      <DependentUpon>IncidentMasterDetailPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Remotion.Linq">

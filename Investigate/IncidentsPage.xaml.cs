@@ -25,9 +25,9 @@ namespace Investigate
 	    void OnItemTapped(object sender, ItemTappedEventArgs e)
 	    {
 			var incident = (IncidentResult) e.Item;
-            var formPage = new IncidentFormPage(ReportInvestigate.Id, incident.Uuid);
+            var page = new IncidentMasterDetailPage(ReportInvestigate.Id, incident.Uuid);
 	        Debug.WriteLine($"Loading incident UUID: {incident.Uuid}");
-	        Navigation.PushAsync(formPage, true);
+	        Navigation.PushAsync(page, true);
 	    }
 
 	    void OnClickAddButton(object sender, EventArgs e)
