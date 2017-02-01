@@ -23,7 +23,7 @@ namespace Investigate
 			listView.ItemTapped += SelectItem;
 		}
 
-		protected async override void OnAppearing()
+		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
 			var viewModel = await ReportInvestigateListViewModel.create();

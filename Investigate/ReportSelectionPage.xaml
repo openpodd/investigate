@@ -3,9 +3,16 @@
 		xmlns="http://xamarin.com/schemas/2014/forms"
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 		x:Class="Investigate.ReportSelectionPage"
-        >
+        Title="Select Report"
+    >
 
-	<ContentPage.ToolbarItems>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="20, 20, 20, 20"
+                    Android="20, 20, 20, 20" />
+    </ContentPage.Padding>
+
+    <ContentPage.ToolbarItems>
 		<ToolbarItem
 			Text="{Binding NumberOfSelectedReports, StringFormat='Selected: {0}'}"
 			Command="{Binding ReportSelectionDoneCommand}" />
@@ -21,10 +28,11 @@
 			   </OnIdiom>
 		   </StackLayout.Orientation>
 			
-			<StackLayout HorizontalOptions="FillAndExpand">
-				<Label Text="Filter" />
+			<StackLayout HorizontalOptions="FillAndExpand" Padding="0, 0, 10, 0">
+				<Label Text="Filter"/>
 
-                <Label x:Name="AuthorityLabel" 
+                <Label x:Name="AuthorityLabel"
+                        Margin="0, 8, 0, 0"
 						TextColor="{Binding AuthorityLabelColor}"
 						Text="{Binding AuthorityLabelText}">
                     <Label.GestureRecognizers>
@@ -32,13 +40,14 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-				<Button x:Name="searchButton" Text="Search" Command="{Binding SearchCommand}"></Button>
+                <StackLayout Orientation="Vertical" Margin="0, 20, 0, 0">
+                    <Button x:Name="searchButton" Text="Search" Command="{Binding SearchCommand}" TextColor="#ffffff" BackgroundColor="#337ab7"></Button>
+                    <Button Text="Reset" Command="{Binding ResetCommand}"></Button>
+                </StackLayout>
 			</StackLayout>
 
 			<StackLayout HorizontalOptions="FillAndExpand">
-				<Label x:Name="resultLabel" Text="{Binding NumberOfReports,
-						StringFormat='Result: {0}'}" />
-				
+
 				<ListView x:Name="reportListView" RowHeight="200" ItemsSource="{Binding Reports}">
 					<ListView.ItemTemplate>
 						<DataTemplate>

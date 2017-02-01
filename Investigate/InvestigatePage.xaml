@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Investigate" x:Class="Investigate.InvestigatePage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Investigate"
+    x:Class="Investigate.InvestigatePage"
+    Title="Investigate List">
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Fetch Report" Clicked="OnFetchReportClicked"/>
 		<ToolbarItem Text="Logout" Clicked="OnLogoutButtonClicked"/>
@@ -7,7 +9,7 @@
 
 	<ContentPage.Padding>
 		<OnPlatform x:TypeArguments="Thickness"
-				iOS="20, 40, 20, 20"
+				iOS="20, 20, 20, 20"
 				Android="20, 20, 20, 20" />
 	</ContentPage.Padding>
 
@@ -22,19 +24,20 @@
 			<ListView
 					x:Name="listView"
 					ItemsSource="{Binding ReportInvestigates}"
-					RowHeight="50"
+					RowHeight="80"
+                    HasUnevenRows="true"
 					IsVisible="{Binding IsNotEmptyReportInvestigates}">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
-							<StackLayout Orientation="Horizontal">
-								<StackLayout WidthRequest="100">
-									<Label Text="{Binding ReportDate, StringFormat='{0:MMMM dd, yyyy}'}" />
+							<StackLayout Orientation="Horizontal" Padding="8, 8, 8, 8">
+								<StackLayout WidthRequest="150">
+									<Label Text="{Binding ReportDate, StringFormat='{0:dd/MM/yyyy}'}" />
 								</StackLayout>
 								
 								<StackLayout>
 									<Label Text="{Binding ReportAdministrationAreaName}" />
-									<Label Text="{Binding ReportRendererFormData}" />
+									<Label Text="{Binding ReportRendererFromDataShortFormat}" />
 								</StackLayout>
 							</StackLayout>
 						</ViewCell>

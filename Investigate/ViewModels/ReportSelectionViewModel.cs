@@ -1,110 +1,116 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Investigate
 {
-	public class ReportSelectionViewModel : BaseViewModel
-	{
-	    public IPoddService PoddService { set; get; }
+    public class ReportSelectionViewModel : BaseViewModel
+    {
+        public IPoddService PoddService { set; get; }
 
-	    public Action<HashSet<SearchItem>> DoneReportSelection { get; set; }
-		public Action CloseAction { set; get; } = () => { };
-	    public Action ShowAuthoritySelectPageAction { set; get; } = () => { };
+        public Action<HashSet<SearchItem>> DoneReportSelection { get; set; }
+        public Action CloseAction { set; get; } = () => { };
+        public Action ShowAuthoritySelectPageAction { set; get; } = () => { };
 
-		public ObservableCollection<SearchItem> Reports { get; }
-		public int NumberOfReports => Reports.Count;
+        public ObservableCollection<SearchItem> Reports { get; }
+        public int NumberOfReports => Reports.Count;
         public HashSet<SearchItem> SelectedReports { get; }
-		public int NumberOfSelectedReports => SelectedReports.Count;
+        public int NumberOfSelectedReports => SelectedReports.Count;
 
-	    private bool canSearch = true;
-		public ICommand SearchCommand { get; }
-		public ICommand SelectReportCommand { get; }
-		public ICommand ReportSelectionDoneCommand { get; }
+        private bool canSearch = true;
+        public ICommand SearchCommand { get; }
+        public ICommand ResetCommand { get; }
+        public ICommand SelectReportCommand { get; }
+        public ICommand ReportSelectionDoneCommand { get; }
 
-	    public String AuthorityLabelColor { get; set; }
-	    public String AuthorityLabelText { get; set; }
-	    public ICommand AuthorityLabelTappedCommand { get; }
-	    private AuthorityItem _authorityItem;
+        public String AuthorityLabelColor { get; set; }
+        public String AuthorityLabelText { get; set; }
+        public ICommand AuthorityLabelTappedCommand { get; }
+        private AuthorityItem _authorityItem;
 
 
-	    public ReportSelectionViewModel()
-		{
-			Reports = new ObservableCollection<SearchItem>();
-			SelectedReports = new HashSet<SearchItem>();
-			SearchCommand = new Command(async () => await Search(), () => canSearch);
-			SelectReportCommand = new Command<SearchItem>(SelectReport);
-			ReportSelectionDoneCommand = new Command(ReportSelectionDone);
+        public ReportSelectionViewModel()
+        {
+            Reports = new ObservableCollection<SearchItem>();
+            SelectedReports = new HashSet<SearchItem>();
+            SearchCommand = new Command(async () => await Search(), () => canSearch);
+            SelectReportCommand = new Command<SearchItem>(SelectReport);
+            ReportSelectionDoneCommand = new Command(ReportSelectionDone);
+            ResetCommand = new Command(ResetSearchCriteria);
+            AuthorityLabelTappedCommand = new Command(PopupAuthoritySelectPage);
 
-		    AuthorityLabelColor = "#999";
-		    AuthorityLabelText = "Tap here to change Authority";
-		    AuthorityLabelTappedCommand = new Command(PopupAuthoritySelectPage);
-		}
+            ResetSearchCriteria();
+        }
 
-	    private async Task Search()
-		{
-			Debug.WriteLine("[ReportSelectionViewModel] Before set canSearch = false");
-			CanSearch(false);
+        private void ResetSearchCriteria()
+        {
+            AuthorityLabelColor = "#999";
+            AuthorityLabelText = "Tap here to change Authority";
+            _authorityItem = null;
+            OnPropertyChanged("AuthorityLabelText");
+            OnPropertyChanged("AuthorityLabelColor");
+        }
 
-			Reports.Clear();
+        private async Task Search()
+        {
+            Debug.WriteLine("[ReportSelectionViewModel] Before set canSearch = false");
+            CanSearch(false);
 
-		    Debug.WriteLine("[ReportSelectionViewModel] Before PoddService.Search");
-		    var results = await PoddService.Search(new SearchRequest()
-			{
-			    AuthorityId = _authorityItem?.Id ?? -99
-			});
-		    Debug.WriteLine("[ReportSelectionViewModel] After PoddService.Search");
-		    foreach (var item in results.Results)
-			{
-				Reports.Add(item);
-			}
+            Reports.Clear();
 
-			CanSearch(true);
-		    Debug.WriteLine("[ReportSelectionViewModel] After set canSearch = true");
-		    OnPropertyChanged("Reports");
-			OnPropertyChanged("NumberOfReports");
-		}
+            Debug.WriteLine("[ReportSelectionViewModel] Before PoddService.Search");
+            var results = await PoddService.Search(new SearchRequest()
+            {
+                AuthorityId = _authorityItem?.Id ?? -99
+            });
+            Debug.WriteLine("[ReportSelectionViewModel] After PoddService.Search");
+            foreach (var item in results.Results)
+            {
+                Reports.Add(item);
+            }
 
-		public void CanSearch(bool value)
-		{
-			canSearch = value;
-			((Command)SearchCommand).ChangeCanExecute();
-		}
+            CanSearch(true);
+            Debug.WriteLine("[ReportSelectionViewModel] After set canSearch = true");
+            OnPropertyChanged("Reports");
+            OnPropertyChanged("NumberOfReports");
+        }
 
-	    private void SelectReport(SearchItem report)
-		{
-		    if (SelectedReports.Contains(report)) return;
+        public void CanSearch(bool value)
+        {
+            canSearch = value;
+            ((Command) SearchCommand).ChangeCanExecute();
+        }
 
-		    SelectedReports.Add(report);
-		    OnPropertyChanged("NumberOfSelectedReports");
-		}
+        private void SelectReport(SearchItem report)
+        {
+            if (SelectedReports.Contains(report)) return;
 
-	    private void ReportSelectionDone()
-		{
-		    DoneReportSelection?.Invoke(SelectedReports);
-		}
+            SelectedReports.Add(report);
+            OnPropertyChanged("NumberOfSelectedReports");
+        }
 
-	    public void PopupAuthoritySelectPage()
-	    {
-	        ShowAuthoritySelectPageAction();
+        private void ReportSelectionDone()
+        {
+            DoneReportSelection?.Invoke(SelectedReports);
+        }
+
+        public void PopupAuthoritySelectPage()
+        {
+            ShowAuthoritySelectPageAction();
             Debug.WriteLine("AuthoritySelect called");
-	    }
+        }
 
-	    public void SetAuthorityFilter(AuthorityItem authorityItem)
-	    {
-	        _authorityItem = authorityItem;
+        public void SetAuthorityFilter(AuthorityItem authorityItem)
+        {
+            _authorityItem = authorityItem;
             AuthorityLabelColor = "#333";
-	        AuthorityLabelText = authorityItem.Name;
-	        OnPropertyChanged("AuthorityLabelColor");
-	        OnPropertyChanged("AuthorityLabelText");
-	    }
-
-	}
+            AuthorityLabelText = authorityItem.Name;
+            OnPropertyChanged("AuthorityLabelColor");
+            OnPropertyChanged("AuthorityLabelText");
+        }
+    }
 }
