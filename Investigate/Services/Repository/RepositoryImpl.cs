@@ -57,11 +57,10 @@ namespace Investigate
 //	        const string query = " select * from Incident where ReportInvestigateId = ? ";
 	        const string query = " select" +
 	                             "   i.Uuid as 'Uuid', Village, HouseNumber, HouseOwnerName," +
-	                             "   sum('SickAccumulatedCount') as 'SickTotal'," +
-	                             "   sum('DeathAccumulatedCount') as 'DeathTotal'," +
-	                             "   'SickTotal' + 'DeathTotal' as 'SickDeathTotal'" +
+	                             "   sum(s.SickCount) as 'SickTotal'," +
+	                             "   sum(s.DeathCount) as 'DeathTotal'" +
 	                             " from Incident i" +
-	                             " left outer join IncidentAnimalStat s" +
+	                             " left join IncidentAnimalStat s on i.uuid = s.IncidentUuid" +
 	                             " where i.ReportInvestigateId = ?" +
 	                             " group by i.Uuid" +
 	                             " order by s.CreatedAt desc";

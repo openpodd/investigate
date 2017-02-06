@@ -32,6 +32,7 @@ namespace Investigate
         public string HouseOwnerName { get; set; }
         public int SickTotal { get; set; }
         public int DeathTotal { get; set; }
-        public int SickDeathTotal { get; set; }
+
+        public int SickDeathTotal => SickTotal + DeathTotal;
     }
 }
