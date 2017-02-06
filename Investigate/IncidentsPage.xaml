@@ -8,33 +8,38 @@
         <ToolbarItem x:Name="addButton" Text="+" />
     </ContentPage.ToolbarItems>
 
-	<ContentPage.Content>
-		<StackLayout>
-		    <ListView x:Name="listView" ItemTapped="OnItemTapped" ItemsSource="{Binding Incidents}">
-		        <ListView.Header>
-		            <Grid x:Name="gridView">
-		                <Grid.ColumnDefinitions>
-		                    <ColumnDefinition Width=".5*" />
-		                    <ColumnDefinition Width=".5*" />
-		                    <ColumnDefinition Width="2*" />
-		                    <ColumnDefinition Width="*" />
-		                    <ColumnDefinition Width="*" />
-		                    <ColumnDefinition Width="*" />
-		                </Grid.ColumnDefinitions>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="20, 20, 20, 20"
+                    Android="20, 20, 20, 20" />
+    </ContentPage.Padding>
 
-		                <Label Text="หมู่" Grid.Row="0" Grid.Column="0" />
-		                <Label Text="บ้านเลขที่" Grid.Row="0" Grid.Column="1" />
-		                <Label Text="เจ้าของบ้าน" Grid.Row="0" Grid.Column="2" />
-		                <Label Text="จำนวนสัตว์ป่วย" Grid.Row="0" Grid.Column="3" />
-		                <Label Text="จำนวนสัตว์ตาย" Grid.Row="0" Grid.Column="4" />
-		                <Label Text="รวมทั้งหมด" Grid.Row="0" Grid.Column="5" />
-		            </Grid>
-		        </ListView.Header>
+    <ContentPage.Content>
+		<StackLayout>
+		    <Grid x:Name="gridView" Padding="0, 0, 0, 10">
+		        <Grid.ColumnDefinitions>
+		            <ColumnDefinition Width=".5*" />
+		            <ColumnDefinition Width=".5*" />
+		            <ColumnDefinition Width="2*" />
+		            <ColumnDefinition Width="*" />
+		            <ColumnDefinition Width="*" />
+		            <ColumnDefinition Width="*" />
+		        </Grid.ColumnDefinitions>
+
+		        <Label Text="หมู่" Grid.Row="0" Grid.Column="0" />
+		        <Label Text="บ้านเลขที่" Grid.Row="0" Grid.Column="1" />
+		        <Label Text="เจ้าของบ้าน" Grid.Row="0" Grid.Column="2" />
+		        <Label Text="จำนวนสัตว์ป่วย" Grid.Row="0" Grid.Column="3" />
+		        <Label Text="จำนวนสัตว์ตาย" Grid.Row="0" Grid.Column="4" />
+		        <Label Text="รวมทั้งหมด" Grid.Row="0" Grid.Column="5" />
+		    </Grid>
+
+		    <ListView x:Name="listView" RowHeight="50" ItemTapped="OnItemTapped" ItemsSource="{Binding Incidents}">
 
 		        <ListView.ItemTemplate>
 		            <DataTemplate>
 		                <ViewCell>
-		                    <Grid x:Name="gridView">
+		                    <Grid x:Name="gridView" Padding="0,8,0,0">
 		                        <Grid.ColumnDefinitions>
 		                            <ColumnDefinition Width=".5*" />
 		                            <ColumnDefinition Width=".5*" />

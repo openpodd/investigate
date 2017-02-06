@@ -46,15 +46,15 @@
                 </StackLayout>
 			</StackLayout>
 
-			<StackLayout HorizontalOptions="FillAndExpand">
+
 
 				<ListView x:Name="reportListView" RowHeight="200" ItemsSource="{Binding Reports}">
-					<ListView.ItemTemplate>
+                    <ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
 								<StackLayout>
 									<Label Text="{Binding AdministrationAreaName}" />
-									<Label Text="{Binding RendererFormData}" />
+									<Label Text="{Binding RendererFormDataStrip}" />
 
 									<StackLayout HorizontalOptions="End">
 										<Button Text="Select"
@@ -67,7 +67,7 @@
 					</ListView.ItemTemplate>
 				</ListView>
 				
-			</StackLayout>
+
 		</StackLayout>
 	</ContentPage.Content>
 	

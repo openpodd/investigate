@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
 namespace Investigate
@@ -92,5 +93,7 @@ namespace Investigate
 
 		[JsonProperty("renderedOriginalFormData")]
 		public string RendererFormData { get; set; }
+
+	    public string RendererFormDataStrip => Regex.Replace(RendererFormData, "<.*?>", string.Empty);
 	}
 }

@@ -27,7 +27,7 @@ namespace Investigate
 			var incident = (IncidentResult) e.Item;
             var page = new IncidentMasterDetailPage(ReportInvestigate.Id, incident.Uuid);
 	        Debug.WriteLine($"Loading incident UUID: {incident.Uuid}");
-	        Navigation.PushAsync(page, true);
+	        Navigation.PushModalAsync(page, true);
 	    }
 
 	    void OnClickAddButton(object sender, EventArgs e)

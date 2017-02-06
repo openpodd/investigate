@@ -13,6 +13,7 @@ namespace Investigate
 		{
 		    InitializeComponent();
 		    listView.ItemSelected += OnItemSelected;
+		    BackButton.Clicked += (sender, args) => Navigation.PopModalAsync();
 		}
 
 	    protected override void OnAppearing()
