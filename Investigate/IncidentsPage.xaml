@@ -39,7 +39,7 @@
 		        <ListView.ItemTemplate>
 		            <DataTemplate>
 		                <ViewCell>
-		                    <Grid x:Name="gridView" Padding="0,8,0,0">
+		                    <Grid x:Name="gridView" Padding="0,8,0,0" VerticalOptions="Center">
 		                        <Grid.ColumnDefinitions>
 		                            <ColumnDefinition Width=".5*" />
 		                            <ColumnDefinition Width=".5*" />

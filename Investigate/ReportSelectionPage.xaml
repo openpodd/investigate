@@ -5,12 +5,12 @@
 		x:Class="Investigate.ReportSelectionPage"
         Title="Select Report"
     >
-
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness"
                     iOS="20, 20, 20, 20"
                     Android="20, 20, 20, 20" />
     </ContentPage.Padding>
+
 
     <ContentPage.ToolbarItems>
 		<ToolbarItem
@@ -52,9 +52,9 @@
                     <ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
-								<StackLayout>
-									<Label Text="{Binding AdministrationAreaName}" />
-									<Label Text="{Binding RendererFormDataStrip}" />
+								<StackLayout HorizontalOptions="Center">
+									<Label Text="{Binding AdministrationAreaName}"/>
+									<Label Text="{Binding RendererFormDataStrip}"/>
 
 									<StackLayout HorizontalOptions="End">
 										<Button Text="Select"

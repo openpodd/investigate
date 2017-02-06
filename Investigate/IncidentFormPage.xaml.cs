@@ -54,18 +54,6 @@ namespace Investigate
 	        Navigation.PopAsync(true);
 	    }
 
-	    void OnClickNewStatButton(object sender, EventArgs e)
-	    {
-	        var page = new IncidentAnimalStatFormPage(IncidentUuid, "");
-	        Navigation.PushAsync(page, true);
-	    }
 
-	    void OnItemTapped(object sender, ItemTappedEventArgs e)
-	    {
-	        var item = (IncidentAnimalStat) e.Item;
-	        Debug.WriteLine($"IncidentFormPage:OnItemTapped called with UUID : {item.Uuid}");
-	        var page = new IncidentAnimalStatFormPage(IncidentUuid, item.Uuid);
-	        Navigation.PushAsync(page, true);
-	    }
 	}
 }

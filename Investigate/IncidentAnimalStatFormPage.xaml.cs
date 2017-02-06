@@ -19,10 +19,11 @@ namespace Investigate
 
 	    protected override async void OnAppearing()
 	    {
+	        base.OnAppearing();
 	        var viewModel = await IncidentAnimalStatFormViewModel.Create(_incidentUuid, _incidenAnimalStatUuid);
 	        viewModel.SaveSuccessAction = SaveSuccess;
 	        BindingContext = viewModel;
-	        base.OnAppearing();
+
 	    }
 
 	    void SaveSuccess()

@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace Investigate
 {
-    public class IncidentAnimalStatFormViewModel
+	public class IncidentAnimalStatFormViewModel : BaseViewModel
     {
         public string IncidentUuid { get; private set; }
         public IncidentAnimalStat IncidentAnimalStat { get; set; }
@@ -42,13 +42,13 @@ namespace Investigate
             return viewModel;
         }
 
-        void Save()
+        public async void Save()
         {
             Debug.WriteLine("SaveCommand called");
             Debug.WriteLine($"Updated: UUID: {IncidentAnimalStat.Uuid}, {IncidentAnimalStat.AnimalType}");
 
             IncidentAnimalStat.UpdatedAt = DateTimeOffset.Now;
-            App.Repository.InsertOrUpdateAsync(IncidentAnimalStat);
+            await App.Repository.InsertOrUpdateAsync(IncidentAnimalStat);
 
             Debug.WriteLine($"Saved : incidentAnimalStat UUID : {IncidentAnimalStat.Uuid} as child of incident UUID: {IncidentAnimalStat.IncidentUuid}");
 

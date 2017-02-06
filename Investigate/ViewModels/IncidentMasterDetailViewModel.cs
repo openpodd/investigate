@@ -21,12 +21,12 @@ namespace Investigate
             {
                 new MasterPageItem()
                 {
-                    Title = "จุดเกิดเหตุ",
+                    Title = "Location",
                     Type = PageType.Detail
                 },
                 new MasterPageItem()
                 {
-                    Title = "สถิติสัตว์ป่วย/ตาย",
+                    Title = "Number of Sick/Death",
                     Type = PageType.AnimalStat
                 },
                 new MasterPageItem()
@@ -48,10 +48,10 @@ namespace Investigate
                     page = new IncidentFormPage(ReportInvestigateId, IncidentUuid);
                     break;
                 case PageType.AnimalStat:
-                    page = new IncidentAnimalStatListPage();
+                    page = new IncidentAnimalStatListPage(IncidentUuid);
                     break;
                 case PageType.Sample:
-                    page = new IncidentAnimalStatListPage();
+                    page = new IncidentAnimalStatListPage(IncidentUuid);
                     break;
                 default:
                     page = new IncidentFormPage(ReportInvestigateId, IncidentUuid);

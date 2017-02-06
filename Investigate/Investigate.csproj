@@ -92,6 +92,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\AuthoritySelectViewModel.cs" />
     <Compile Include="ViewModels\IncidentAnimalStatFormViewModel.cs" />
+    <Compile Include="ViewModels\IncidentAnimalStatListViewModel.cs" />
     <Compile Include="ViewModels\IncidentMasterDetailViewModel.cs" />
     <Compile Include="Views\TextEntry.cs" />
     <Compile Include="Constants\ReturnKeyType.cs" />

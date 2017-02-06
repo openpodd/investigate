@@ -1,8 +1,61 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Investigate.IncidentAnimalStatListPage">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="20, 20, 20, 20"
+                    Android="20, 20, 20, 20" />
+    </ContentPage.Padding>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="OnClickNewStatButton"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
 	<ContentPage.Content>
         <StackLayout>
+            <Grid Padding="0, 0, 0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
+                <Label Text="ชนิดสัตว์" Grid.Row="0" Grid.Column="0" />
+                <Label Text="วันที่" Grid.Row="0" Grid.Column="1" />
+                <Label Text="จำนวนป่วย" Grid.Row="0" Grid.Column="2" />
+                <Label Text="จำนวนตาย" Grid.Row="0" Grid.Column="3" />
+                <Label Text="ป่วยทั้งหมด" Grid.Row="0" Grid.Column="4" />
+                <Label Text="ตายทั้งหมด" Grid.Row="0" Grid.Column="5" />
+            </Grid>
+
+            <ListView ItemsSource="{Binding IncidentAnimalStatList}" ItemTapped="OnItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding AnimalType}" Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding Date, StringFormat='{0:dd MM yyyy}'}" Grid.Row="0" Grid.Column="1" />
+                                <Label Text="{Binding SickCount}" Grid.Row="0" Grid.Column="2" />
+                                <Label Text="{Binding DeathCount}" Grid.Row="0" Grid.Column="3" />
+                                <Label Text="{Binding SickAccumulatedCount}" Grid.Row="0" Grid.Column="4" />
+                                <Label Text="{Binding DeathAccumulatedCount}" Grid.Row="0" Grid.Column="5" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

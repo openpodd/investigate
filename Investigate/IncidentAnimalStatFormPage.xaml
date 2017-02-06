@@ -4,19 +4,22 @@
              xmlns:local="clr-namespace:Investigate;assembly=Investigate"
              x:Class="Investigate.IncidentAnimalStatFormPage">
 
-	<ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding IncidentAnimalStat}" />
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="บันทึก" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
 
-            <TableView Intent="Form" BindingContext="IncidentAnimalStat">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <TableView Intent="Form">
                 <TableRoot>
                     <TableSection>
-                        <EntryCell Label="ชนิดสัตว์" Text="{Binding AnimalType}" HorizontalTextAlignment="End" />
-                        <local:DateCell Label="วันที่" Date="{Binding Date}" />
-                        <EntryCell Label="ป่วย" Text="{Binding SickCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
-                        <EntryCell Label="ตาย" Text="{Binding DeathCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
-                        <EntryCell Label="ป่วยสะสม" Text="{Binding SickAccumulatedCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
-                        <EntryCell Label="ตายสะสม" Text="{Binding DeathAccumulatdCount}" HorizontalTextAlignment="End" Keyboard="Numeric" />
+                        <EntryCell Label="ชนิดสัตว์" Text="{Binding IncidentAnimalStat.AnimalType, Mode=TwoWay}" HorizontalTextAlignment="End" />
+                        <local:DateCell Label="วันที่" Date="{Binding IncidentAnimalStat.Date, Mode=TwoWay}" />
+                        <EntryCell Label="ป่วย" Text="{Binding IncidentAnimalStat.SickCount, Mode=TwoWay}" HorizontalTextAlignment="End" Keyboard="Numeric"/>
+                        <EntryCell Label="ตาย" Text="{Binding IncidentAnimalStat.DeathCount, Mode=TwoWay}" HorizontalTextAlignment="End" Keyboard="Numeric" />
+                        <EntryCell Label="ป่วยสะสม" Text="{Binding IncidentAnimalStat.SickAccumulatedCount, Mode=TwoWay}" HorizontalTextAlignment="End" Keyboard="Numeric" />
+                        <EntryCell Label="ตายสะสม" Text="{Binding IncidentAnimalStat.DeathAccumulatedCount, Mode=TwoWay}" HorizontalTextAlignment="End" Keyboard="Numeric" />
                     </TableSection>
                 </TableRoot>
             </TableView>
