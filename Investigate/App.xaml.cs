@@ -32,7 +32,7 @@ namespace Investigate
 				MainPage = new NavigationPage(new LoginPage());
 			}
 
-			Repository.initTableAsync();
+			Repository.InitTableAsync();
 		}
 
 		protected override void OnStart()

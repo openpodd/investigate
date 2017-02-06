@@ -43,7 +43,7 @@ namespace Investigate
 					ReportCreateByTelephone = item.CreateByTelephone,
 					ReportRendererFormData = item.RendererFormData
 				};
-				await App.Repository.createAsync(investigate);
+				await App.Repository.CreateAsync(investigate);
 			}
 
 		    await Navigation.PopAsync(true);

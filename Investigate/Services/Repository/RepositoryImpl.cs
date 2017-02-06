@@ -15,19 +15,19 @@ namespace Investigate
 			database = DependencyService.Get<IDatabase>().DBConnect();
 		}
 
-		public async Task initTableAsync()
+		public async Task InitTableAsync()
 		{
 			await database.CreateTableAsync<ReportInvestigate>();
 			await database.CreateTableAsync<Incident>();
 		    await database.CreateTableAsync<IncidentAnimalStat>();
 		}
 
-		public async Task createAsync(ReportInvestigate ri)
+		public async Task CreateAsync(ReportInvestigate ri)
 		{
 			await database.InsertAsync(ri);
 		}
 
-		public async Task createAsync(Incident incident)
+		public async Task CreateAsync(Incident incident)
 		{
 			await database.InsertAsync(incident);
 		}

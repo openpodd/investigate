@@ -5,11 +5,11 @@ namespace Investigate
 {
 	public interface IRepository
 	{
-		Task initTableAsync();
+		Task InitTableAsync();
 
-		Task createAsync(ReportInvestigate ri);
+		Task CreateAsync(ReportInvestigate ri);
 
-		Task createAsync(Incident incident);
+		Task CreateAsync(Incident incident);
 
 		Task InsertOrUpdateAsync<T>(T row);
 
