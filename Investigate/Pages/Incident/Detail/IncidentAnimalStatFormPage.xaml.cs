@@ -6,7 +6,35 @@ using Xamarin.Forms;
 
 namespace Investigate
 {
-	public class IncidentAnimalStatFormViewModel : BaseViewModel
+	public partial class IncidentAnimalStatFormPage : ContentPage
+	{
+	    private string _incidentUuid;
+	    private string _incidenAnimalStatUuid;
+
+		public IncidentAnimalStatFormPage(string incidentUuid, string incidenAnimalStatUuid)
+		{
+			InitializeComponent();
+		    _incidentUuid = incidentUuid;
+		    _incidenAnimalStatUuid = incidenAnimalStatUuid;
+		}
+
+	    protected override async void OnAppearing()
+	    {
+	        base.OnAppearing();
+	        var viewModel = await IncidentAnimalStatFormViewModel.Create(_incidentUuid, _incidenAnimalStatUuid);
+	        viewModel.SaveSuccessAction = SaveSuccess;
+	        BindingContext = viewModel;
+
+	    }
+
+	    void SaveSuccess()
+	    {
+	        Navigation.PopAsync(true);
+	    }
+	}
+
+
+    public class IncidentAnimalStatFormViewModel : BaseViewModel
     {
         public string IncidentUuid { get; private set; }
         public IncidentAnimalStat IncidentAnimalStat { get; set; }
@@ -20,7 +48,7 @@ namespace Investigate
 
         public static async Task<IncidentAnimalStatFormViewModel> Create(string incidentUuid, string incidentAnimalStatUuid)
         {
-            Investigate.IncidentAnimalStat incidentAnimalStat;
+            IncidentAnimalStat incidentAnimalStat;
             if (!string.IsNullOrEmpty(incidentAnimalStatUuid))
             {
                 incidentAnimalStat = await App.Repository.GetIncidentAnimalStatByUuid(incidentAnimalStatUuid);

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Investigate
@@ -37,4 +39,22 @@ namespace Investigate
 	        Navigation.PushAsync(page, true);
 	    }
 	}
+
+    public class IncidentAnimalStatListViewModel
+    {
+        public Incident Incident { get; set; }
+        public IEnumerable<IncidentAnimalStat> IncidentAnimalStatList { get; set; }
+
+        public static async Task<IncidentAnimalStatListViewModel> Create(string uuid)
+        {
+            var instance =
+                new IncidentAnimalStatListViewModel
+                {
+                    Incident = await App.Repository.GetIncidentByUUID(uuid),
+                    IncidentAnimalStatList = await App.Repository.GetIncidentAnimalStatListByIncidentUuid(uuid)
+                };
+            return instance;
+        }
+
+    }
 }

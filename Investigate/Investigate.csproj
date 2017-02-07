@@ -29,47 +29,40 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="InvestigatePage.xaml" />
+    <EmbeddedResource Include="Pages\Investigate\List\InvestigatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportSelectionPage.xaml">
+    <EmbeddedResource Include="Pages\Investigate\List\ReportSelectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportInvestigateDetailPage.xaml">
+    <EmbeddedResource Include="Pages\Investigate\Detail\ReportInvestigateDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportDetailPage.xaml">
+    <EmbeddedResource Include="Pages\Investigate\Detail\ReportDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="IncidentsPage.xaml">
+    <EmbeddedResource Include="Pages\Incident\List\IncidentsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="IncidentFormPage.xaml">
+    <EmbeddedResource Include="Pages\Incident\Detail\IncidentFormPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="AuthoritySelectPage.xaml">
+    <EmbeddedResource Include="Pages\Investigate\List\AuthoritySelectPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyPage.xaml">
+    <EmbeddedResource Include="Pages\Incident\Detail\IncidentAnimalStatFormPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="IncidentAnimalStatFormPage.xaml">
+    <EmbeddedResource Include="Pages\Incident\Detail\IncidentAnimalStatListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="IncidentListPage.xaml">
+    <EmbeddedResource Include="Pages\Incident\Detail\IncidentMasterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="IncidentAnimalStatListPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IncidentMasterPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="XPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IncidentMasterDetailPage.xaml">
+    <EmbeddedResource Include="Pages\Incident\Detail\IncidentMasterDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -77,7 +70,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InvestigatePage.xaml.cs">
+    <Compile Include="Pages\Investigate\List\InvestigatePage.xaml.cs">
       <DependentUpon>InvestigatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\BaseModel.cs" />
@@ -90,10 +83,6 @@
     <Compile Include="Services\Authority\AuthorityResult.cs" />
     <Compile Include="Services\Authority\AuthorityService.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="ViewModels\AuthoritySelectViewModel.cs" />
-    <Compile Include="ViewModels\IncidentAnimalStatFormViewModel.cs" />
-    <Compile Include="ViewModels\IncidentAnimalStatListViewModel.cs" />
-    <Compile Include="ViewModels\IncidentMasterDetailViewModel.cs" />
     <Compile Include="Views\TextEntry.cs" />
     <Compile Include="Constants\ReturnKeyType.cs" />
     <Compile Include="Views\BooleanToObjectConverter.cs" />
@@ -106,56 +95,42 @@
     <Compile Include="Services\Report\SearchResult.cs" />
     <Compile Include="Services\Report\SearchRequest.cs" />
     <Compile Include="Services\PaginateRequest.cs" />
-    <Compile Include="ReportSelectionPage.xaml.cs">
+    <Compile Include="Pages\Investigate\List\ReportSelectionPage.xaml.cs">
       <DependentUpon>ReportSelectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ReportSelectionViewModel.cs" />
     <Compile Include="Models\ReportInvestigate.cs" />
     <Compile Include="Models\Report.cs" />
-    <Compile Include="ViewModels\ReportInvestigateListViewModel.cs" />
     <Compile Include="Services\IPoddService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ReportInvestigateDetailPage.xaml.cs">
+    <Compile Include="Pages\Investigate\Detail\ReportInvestigateDetailPage.xaml.cs">
       <DependentUpon>ReportInvestigateDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReportDetailPage.xaml.cs">
+    <Compile Include="Pages\Investigate\Detail\ReportDetailPage.xaml.cs">
       <DependentUpon>ReportDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ReportInvestigateReportDetailViewModel.cs" />
-    <Compile Include="IncidentsPage.xaml.cs">
+    <Compile Include="Pages\Incident\List\IncidentsPage.xaml.cs">
       <DependentUpon>IncidentsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\IncidentListViewModel.cs" />
-    <Compile Include="IncidentFormPage.xaml.cs">
+    <Compile Include="Pages\Incident\Detail\IncidentFormPage.xaml.cs">
       <DependentUpon>IncidentFormPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\IncidentFormViewModel.cs" />
     <Compile Include="Services\Repository\IRepository.cs" />
     <Compile Include="Services\Repository\RepositoryImpl.cs" />
     <Compile Include="Services\Repository\IDatabase.cs" />
-    <Compile Include="AuthoritySelectPage.xaml.cs">
+    <Compile Include="Pages\Investigate\List\AuthoritySelectPage.xaml.cs">
       <DependentUpon>AuthoritySelectPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyPage.xaml.cs">
-      <DependentUpon>MyPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="IncidentAnimalStatFormPage.xaml.cs">
+    <Compile Include="Pages\Incident\Detail\IncidentAnimalStatFormPage.xaml.cs">
       <DependentUpon>IncidentAnimalStatFormPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DateCell.cs" />
-    <Compile Include="IncidentListPage.xaml.cs">
-      <DependentUpon>IncidentListPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="IncidentAnimalStatListPage.xaml.cs">
+    <Compile Include="Pages\Incident\Detail\IncidentAnimalStatListPage.xaml.cs">
       <DependentUpon>IncidentAnimalStatListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IncidentMasterPage.xaml.cs">
+    <Compile Include="Pages\Incident\Detail\IncidentMasterPage.xaml.cs">
       <DependentUpon>IncidentMasterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="XPage.xaml.cs">
-      <DependentUpon>XPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="IncidentMasterDetailPage.xaml.cs">
+    <Compile Include="Pages\Incident\Detail\IncidentMasterDetailPage.xaml.cs">
       <DependentUpon>IncidentMasterDetailPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -223,6 +198,13 @@
     <Folder Include="Services\" />
     <Folder Include="Services\Login\" />
     <Folder Include="Services\Report\" />
+    <Folder Include="Pages\"/>
+    <Folder Include="Pages\Investigate\"/>
+    <Folder Include="Pages\Investigate\Detail\"/>
+    <Folder Include="Pages\Investigate\List\"/>
+    <Folder Include="Pages\Incident\"/>
+    <Folder Include="Pages\Incident\Detail\"/>
+    <Folder Include="Pages\Incident\List\"/>
     <Folder Include="ViewModels\" />
     <Folder Include="Models\" />
     <Folder Include="Services\Repository\" />
