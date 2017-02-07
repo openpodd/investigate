@@ -48,24 +48,24 @@
 
 
 
-				<ListView x:Name="reportListView" RowHeight="200" ItemsSource="{Binding Reports}">
-                    <ListView.ItemTemplate>
-						<DataTemplate>
-							<ViewCell>
-								<StackLayout HorizontalOptions="Center">
-									<Label Text="{Binding AdministrationAreaName}"/>
-									<Label Text="{Binding RendererFormDataStrip}"/>
+            <ListView x:Name="reportListView" ItemsSource="{Binding Reports}" HasUnevenRows="True" RowHeight="-1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding AdministrationAreaName}" MinimumHeightRequest="40"/>
+                                <Label Text="{Binding RendererFormDataStrip}" MinimumHeightRequest="80" LineBreakMode="WordWrap"/>
 
-									<StackLayout HorizontalOptions="End">
-										<Button Text="Select"
-											Command="{Binding Source={x:Reference reportListView}, Path=BindingContext.SelectReportCommand}"
-											CommandParameter="{Binding .}" />
-									</StackLayout>
-								</StackLayout>
-							</ViewCell>
-						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
+                                <StackLayout HorizontalOptions="End">
+                                    <Button Text="Select"
+                                        Command="{Binding Source={x:Reference reportListView}, Path=BindingContext.SelectReportCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 				
 
 		</StackLayout>

@@ -13,7 +13,7 @@
 
 	<ContentPage.Content>
         <StackLayout>
-            <Grid Padding="0, 0, 0, 10">
+            <Grid Padding="0, 0, 0, 10" MinimumHeightRequest="30">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="2*" />

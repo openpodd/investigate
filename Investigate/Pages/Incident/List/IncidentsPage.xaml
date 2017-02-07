@@ -16,7 +16,7 @@
 
     <ContentPage.Content>
 		<StackLayout>
-		    <Grid x:Name="gridView" Padding="0, 0, 0, 10">
+		    <Grid x:Name="gridView" Padding="0, 0, 0, 10" MinimumHeightRequest="30">
 		        <Grid.ColumnDefinitions>
 		            <ColumnDefinition Width=".5*" />
 		            <ColumnDefinition Width=".5*" />
